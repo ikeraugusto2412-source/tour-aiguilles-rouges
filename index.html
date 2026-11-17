@@ -681,7 +681,7 @@ document.getElementById('incOpt').addEventListener('change',e=>{store.set('in:in
 ['nA','nB','food','fdays','water'].forEach(id=>{const el=document.getElementById(id);const v=store.get('in:'+id,null);if(v!=null)el.value=v;el.addEventListener('input',()=>{store.set('in:'+id,el.value);id[0]==='n'?renderGear():totals();Sy.settings()})});
 renderGear();
 /* ---------- Sincronización compartida (Supabase, sin dependencias) ---------- */
-const SYNC={url:'',key:''}; // URL del proyecto Supabase y anon key (pública por diseño)
+const SYNC={url:'https://rdgssuozkdwxccysrdsz.supabase.co',key:'sb_publishable_a2rpQ6lCPpObKiEYCp9zug_af_yFHRu'}; // URL del proyecto Supabase y anon key (pública por diseño)
 const Sy=(()=>{
   const st=document.getElementById('syncState'), box=document.getElementById('syncBox');
   let trip=null, since='-infinity', timer=null, lastOk=0, failing=false;
@@ -717,16 +717,16 @@ const Sy=(()=>{
   }
   async function pull(){
     if(!on()) return status();
-    try{ const rows=await rpc('tar_get',{p_trip:trip,p_since:since}); failing=false; lastOk=Date.now(); apply(rows); }
+    try{ const back=since==='-infinity'?since:new Date(Date.parse(since)-5000).toISOString(); const rows=await rpc('tar_get',{p_trip:trip,p_since:back}); failing=false; lastOk=Date.now(); apply(rows); }
     catch(e){ failing=true; }
     status();
   }
   async function flush(){
     pushT=null; if(!on()||!dirty.size) return;
     const items=[...dirty.entries()];
-    for(const [id,v] of items){
-      try{ const t=await rpc('tar_put',{p_trip:trip,p_item:id,p_data:v.del?{}:v.data,p_deleted:!!v.del}); if(dirty.get(id)===v) dirty.delete(id); failing=false; lastOk=Date.now(); }
-      catch(e){ failing=true; break; }
+    for(let k=0;k<items.length;k+=8){
+      const res=await Promise.allSettled(items.slice(k,k+8).map(([id,v])=>rpc('tar_put',{p_trip:trip,p_item:id,p_data:v.del?{}:v.data,p_deleted:!!v.del}).then(()=>{ if(dirty.get(id)===v) dirty.delete(id); })));
+      if(res.some(r=>r.status==='rejected')){ failing=true; break; } failing=false; lastOk=Date.now(); status();
     }
     store.set('syncDirty',[...dirty.entries()]);
     status(); if(dirty.size&&!pushT) pushT=setTimeout(flush,5000);

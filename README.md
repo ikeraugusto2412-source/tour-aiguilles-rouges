@@ -39,12 +39,13 @@ La sección **Material y peso** reúne 56 ítems y son **listas orientativas: aj
 ## Lista compartida (Supabase)
 Para que los dos veáis los mismos checks, la lista de material se sincroniza con Supabase. Usa llamadas REST sin librerías y se actualiza cada ~8 s y al volver a la pestaña.
 1. Ejecuta `supabase/tar_gear.sql` en el SQL Editor de tu proyecto. Crea la tabla `tar_gear_items` y las funciones `tar_get` y `tar_put`. La tabla queda cerrada a la anon key y solo se accede a través de esas dos funciones, que exigen el código del viaje.
-2. Pon la URL del proyecto y la anon key en `const SYNC={url:'…',key:'…'}` de `index.html`. La anon key es pública por diseño.
+2. La URL del proyecto y la clave publicable (`sb_publishable_…`, pública por diseño) están en `const SYNC={…}` de `index.html`. **Hecho:** usa el proyecto activo de Supabase de la cuenta. La SQL se ejecutó el 17 nov 2026.
 3. En la web: **Crear viaje compartido** → **Copiar enlace para tu amigo**. El enlace lleva `#viaje=<código secreto>`. El fragmento `#` no se envía al servidor de la web y se borra de la barra al abrirlo.
 - Se sincronizan los checks, "falta comprar", pesos, notas, nombres, ítems añadidos o borrados y los ajustes de la calculadora.
 - Si los dos editáis el mismo ítem a la vez, gana el último cambio.
 - Sin conexión, los cambios se guardan en el navegador y se envían al volver.
 - Quien tenga el enlace puede editar la lista.
+- Plan gratuito de Supabase: si el proyecto se pausa por inactividad, la lista sigue funcionando en cada móvil por separado y se vuelve a sincronizar al reactivarlo.
 
 ## Ficheros
 - `index.html` — la guía (datos incrustados). Material, pesos y hora límite del día 7 se guardan en el `localStorage` del navegador.
