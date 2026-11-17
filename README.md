@@ -1,0 +1,73 @@
+# Tour des Aiguilles Rouges · 1–7 agosto 2027 · sentido horario
+
+Guía de campo estática (`index.html`, sin build) para dos personas autosuficientes. Ruta: **variante A invertida** (sentido horario), con salida y llegada a pie en Chamonix. Son 6 noches, solo en bivouac autorizado, sin hoteles ni campings.
+
+**Última comprobación de fuentes: 17 de noviembre de 2026.**
+
+## Etapas (calculadas sobre el track, no estimadas)
+| Día | Tramo | km | +/− m | DIN 33466 | Noche (coste: a confirmar) |
+|---|---|---|---|---|---|
+| 1 ago | Gare routière Chamonix Sud → Plan Lachat → Bellachat | 6,8 | +1.169 / −64 | 4h53 | Bellachat · 15 · contactar refugio |
+| 2 ago | Bellachat → Planpraz → Col du Lac Cornu → Lac Cornu | 10,6 | +883 / −757 | 5h47 | Combe du Lac Cornu · 15 · online (ubicación pendiente) |
+| 3 ago | Lac Cornu → Glière → Fouet → Flégère → Lac Blanc → Chéserys | 9,6 | +802 / −854 | 5h35 | Chéserys · 30 · online |
+| 4 ago | Chéserys → Col des Montets → Le Buet → Pierre à Bérard | 12,8 | +628 / −923 | 5h32 | Pierre à Bérard · 15 · contactar refugio |
+| 5 ago | Pierre à Bérard → Salenton → Moëde Anterne → Arlevé | 14,9 | +1.029 / −1.096 | 7h29 | Arlevé · 15 · online |
+| 6 ago | Arlevé → Col du Brévent → Le Brévent → lago del Brévent | 6,5 | +655 / −379 | 3h46 | Lago del Brévent · 25 · online |
+| 7 ago | Lago del Brévent → Bellachat → Plan Lachat → Chamonix | 8,6 | +93 / −1.188 | 3h46 (+20 % = 4h31) | — bus 13:30 (por confirmar) |
+
+- Opcional el día 3: Lac Blanc ↔ Col du Belvédère, 3,8 km, +430/−430 m, 2h46. No está sumado a los totales.
+- El día 6 incluye el desvío del Brévent al lago: 2,2 km, +24/−338 m, 1h02.
+- Los tiempos DIN no incluyen paradas.
+- Tus datos frente a los calculados: el tramo "Bellachat–Chamonix" de tu referencia mide ~5,7 km. El calculado desde la gare routière mide 6,8 km.
+
+## Ficheros
+- `index.html` — la guía (datos incrustados). Material, pesos y hora límite del día 7 se guardan en el `localStorage` del navegador.
+- `gpx/TAR1_Bellachat … TAR7_Chamonix.gpx` — un GPX por día para Garmin: track simplificado (Douglas-Peucker 6 m por tramos entre waypoints, 152–265 puntos) y waypoints con nombres de ≤ 14 caracteres. Los bivouacs llevan el símbolo *Campground*. `Lac Blanc NO` = bivouac prohibido. `Biv LacCornu?` = ubicación pendiente.
+- `gpx/TAR3_Belvedere.gpx` — opcional.
+- `gpx/oficial_Tour_Aiguilles_Rouges_circular.gpx` — el original, sin tocar (solo en local; no se publica en el repo porque su licencia no está clara: descárgalo desde el enlace de Fuentes).
+
+## Cómo se ha compuesto el track
+El GPX oficial es circular y cierra en el Col des Montets: Montets → Chéserys → Lac Blanc → Flégère → Planpraz → Bellachat → Brévent → Col du Brévent → Arlevé → Moëde → Salenton → Bérard → Le Buet → Montets. Se ha recortado por índices (el punto del track más cercano a cada waypoint OSM) y se ha **invertido**. Después se ha **enlazado**: cada waypoint se inserta en el track, de modo que la línea pasa exactamente por cada punto (0 m) y cada día empieza donde acabó el anterior. La excepción es Lac Cornu: el marcador es el centro del lago (a 61 m de la orilla), porque la zona de bivouac sigue pendiente.
+
+| Tramo | Origen |
+|---|---|
+| d1 Chamonix → Bellachat | BRouter/OSM — **no oficial, verificar en mapa IGN** |
+| d2 Bellachat → Planpraz | oficial (invertido) |
+| d2 Planpraz → Col Cornu → Lac Cornu | BRouter/OSM — **no oficial** (entra en la estación de Planpraz, a ~200 m del track oficial) |
+| d3 Lac Cornu → Glière → Fouet → Flégère | BRouter/OSM — **no oficial** |
+| d3 Flégère → Lac Blanc → Chéserys | oficial (invertido) |
+| d3 Belvédère (opcional) | BRouter/OSM, perfil `trekking` — **no oficial** |
+| d4 Chéserys → Col des Montets | oficial (invertido) |
+| d4 Col des Montets → Le Buet → Pierre à Bérard | oficial (invertido; es el cierre del circuito) |
+| d5 Bérard → Salenton → Moëde → Arlevé | oficial (invertido) |
+| d6 Arlevé → Col du Brévent → Le Brévent | oficial (invertido) |
+| d6 Le Brévent → lago (desvío) | BRouter/OSM — **no oficial** |
+| d7 Lago → Bellachat → Plan Lachat → Chamonix | BRouter/OSM — **no oficial** |
+
+### Verificaciones pedidas
+- **Enlace Col des Montets → Le Buet (d4):** está dentro del track oficial (2,3 km, −128 m, 41 min). BRouter da la misma distancia por senderos OSM y aparece en el mapa como capa gris de contraste. Alternativa en bus: líneas 18 y 5 de Chamonix Mobilité, **horarios 2027 por confirmar**.
+- **Bajada a pie desde el lago del Brévent (d7):** viable por senderos OSM. El trazado BRouter pasa por el refugio de Bellachat y por Plan Lachat y llega a la gare routière: 8,6 km, −1.188 m. Escape alternativo: telecabina de Planpraz (horario por confirmar).
+- **Bivouac del lago del Brévent:** OSM node 13584865351, a ~630 m del track oficial. Desvío marcado en discontinua.
+
+## Fuentes
+1. Track oficial: `Tour_Aiguilles_Rouges.gpx` (VisuGPX, 7.536 puntos), enlazado desde https://www.haute-savoie-tourisme.org/121558-tour-des-aiguilles-rouges-4-jours → https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/80/210/23712336/Tour_Aiguilles_Rouges.gpx
+2. Tramos no oficiales: BRouter (https://brouter.de), perfil `hiking-mountain`, sobre OpenStreetMap.
+3. Coordenadas de puntos: OpenStreetMap (Nominatim y API v0.6), con el ID de objeto en cada ficha. © colaboradores de OSM, ODbL. "Col du Lac Cornu" figura en OSM como *Col Cornu* (node 800899410, 2.414 m).
+4. Altitud: EU-DEM 25 m vía OpenTopoData, remuestreo cada 50 m y umbral de 10 m. La altitud del GPX oficial tiene escalones de ~18 m y no se usa. El MDT suaviza cumbres.
+5. Tiempos: DIN 33466 (4 km/h, +300 m/h, −500 m/h). En la hora límite del día 7 se añade un +20 % por mochila.
+6. Fotos: Wikimedia Commons (autor y licencia en cada ficha).
+7. Bivouac: tus datos 2025/2026, contrastados con OSM `capacity:tents` en Chéserys (30), Brévent (25) y Arlevé (15). Reservas: reserve-bivouac74.fr · bivouac.nature-haute-savoie.fr · Asters-CEN74 04 50 66 47 51. Horario 19:00–9:00, una noche, sin fuego.
+8. Zonas prohibidas: polígonos OSM de Lac Blanc (relation 107981) y Lacs des Chéserys (relation 17141086). Estos están a 2.136–2.182 m, por debajo de la zona de bivouac, y se tratan como los "lagos inferiores". También está prohibido bañarse.
+9. Mapas base: OpenTopoMap (CC-BY-SA) y OpenStreetMap.
+
+## No incluido
+- **Mont Buet:** exigiría dos noches seguidas en la Pierre à Bérard, sin confirmar con el refugio.
+
+## Pendiente / por verificar
+- [ ] Bivouac 2027: capacidades, normas, precio ("a confirmar" en todas las noches) y apertura de reservas.
+- [ ] Bellachat y Pierre à Bérard: confirmar el bivouac con cada refugio.
+- [ ] Lac Cornu: ubicación exacta de la zona de bivouac (no está en OSM).
+- [ ] Bus de vuelta del 7 ago (13:30), líneas 18 y 5 (Montets ↔ Le Buet), telecabina de Planpraz y remonte de la Flégère: horarios 2027.
+- [ ] Revisar sobre el mapa IGN TOP25 todos los tramos BRouter.
+- [ ] Discrepancias de altitud guía/OSM: Col du Fouet 2.330/2.320, Plan Lachat 1.600/1.574.
+- [ ] Pesos del material (sobre todo el trípode).

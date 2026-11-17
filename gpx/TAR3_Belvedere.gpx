@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="TAR 2027 guia" xmlns="http://www.topografix.com/GPX/1/1">
+<metadata><name>TAR3 Belvedere</name><desc>Sentido horario. Track oficial Haute-Savoie Tourisme/VisuGPX + tramos BRouter/OSM (no oficiales, verificar en mapa IGN). Simplificado 6 m; pasa por todos los waypoints.</desc></metadata>
+<wpt lat="45.9814668" lon="6.8918992"><ele>2352</ele><name>Lac Blanc NO</name></wpt>
+<wpt lat="45.9899824" lon="6.876032"><ele>2780</ele><name>Col Belvedere</name></wpt>
+<trk><name>TAR3 Belvedere</name><trkseg>
+<trkpt lat="45.981467" lon="6.891899"/>
+<trkpt lat="45.98185" lon="6.891133"/>
+<trkpt lat="45.981674" lon="6.890756"/>
+<trkpt lat="45.981955" lon="6.890181"/>
+<trkpt lat="45.981631" lon="6.889921"/>
+<trkpt lat="45.981655" lon="6.889381"/>
+<trkpt lat="45.981935" lon="6.88922"/>
+<trkpt lat="45.982268" lon="6.888699"/>
+<trkpt lat="45.982257" lon="6.887993"/>
+<trkpt lat="45.982396" lon="6.887516"/>
+<trkpt lat="45.983138" lon="6.886408"/>
+<trkpt lat="45.983795" lon="6.88606"/>
+<trkpt lat="45.983903" lon="6.885786"/>
+<trkpt lat="45.98407" lon="6.885587"/>
+<trkpt lat="45.984178" lon="6.885642"/>
+<trkpt lat="45.984389" lon="6.885237"/>
+<trkpt lat="45.984545" lon="6.884622"/>
+<trkpt lat="45.984459" lon="6.884372"/>
+<trkpt lat="45.984872" lon="6.883938"/>
+<trkpt lat="45.985255" lon="6.883216"/>
+<trkpt lat="45.985399" lon="6.882363"/>
+<trkpt lat="45.985815" lon="6.881779"/>
+<trkpt lat="45.985636" lon="6.881618"/>
+<trkpt lat="45.986027" lon="6.880875"/>
+<trkpt lat="45.986721" lon="6.878597"/>
+<trkpt lat="45.987173" lon="6.878208"/>
+<trkpt lat="45.987409" lon="6.87736"/>
+<trkpt lat="45.987651" lon="6.87725"/>
+<trkpt lat="45.988398" lon="6.87736"/>
+<trkpt lat="45.989028" lon="6.877189"/>
+<trkpt lat="45.989262" lon="6.876443"/>
+<trkpt lat="45.989306" lon="6.87573"/>
+<trkpt lat="45.98961" lon="6.875704"/>
+<trkpt lat="45.989659" lon="6.875593"/>
+<trkpt lat="45.989982" lon="6.876032"/>
+<trkpt lat="45.989868" lon="6.875697"/>
+<trkpt lat="45.989659" lon="6.875593"/>
+<trkpt lat="45.98961" lon="6.875704"/>
+<trkpt lat="45.989306" lon="6.87573"/>
+<trkpt lat="45.989262" lon="6.876443"/>
+<trkpt lat="45.989028" lon="6.877189"/>
+<trkpt lat="45.988398" lon="6.87736"/>
+<trkpt lat="45.987651" lon="6.87725"/>
+<trkpt lat="45.987409" lon="6.87736"/>
+<trkpt lat="45.987173" lon="6.878208"/>
+<trkpt lat="45.986721" lon="6.878597"/>
+<trkpt lat="45.986027" lon="6.880875"/>
+<trkpt lat="45.985636" lon="6.881618"/>
+<trkpt lat="45.985815" lon="6.881779"/>
+<trkpt lat="45.985399" lon="6.882363"/>
+<trkpt lat="45.985255" lon="6.883216"/>
+<trkpt lat="45.984872" lon="6.883938"/>
+<trkpt lat="45.984459" lon="6.884372"/>
+<trkpt lat="45.984545" lon="6.884622"/>
+<trkpt lat="45.984389" lon="6.885237"/>
+<trkpt lat="45.984178" lon="6.885642"/>
+<trkpt lat="45.98407" lon="6.885587"/>
+<trkpt lat="45.983903" lon="6.885786"/>
+<trkpt lat="45.983795" lon="6.88606"/>
+<trkpt lat="45.983138" lon="6.886408"/>
+<trkpt lat="45.982341" lon="6.887647"/>
+<trkpt lat="45.982243" lon="6.888125"/>
+<trkpt lat="45.982268" lon="6.888699"/>
+<trkpt lat="45.981935" lon="6.88922"/>
+<trkpt lat="45.981738" lon="6.889267"/>
+<trkpt lat="45.981602" lon="6.889521"/>
+<trkpt lat="45.981631" lon="6.889921"/>
+<trkpt lat="45.981955" lon="6.890181"/>
+<trkpt lat="45.981674" lon="6.890756"/>
+<trkpt lat="45.98185" lon="6.891133"/>
+<trkpt lat="45.981452" lon="6.891893"/>
+</trkseg></trk>
+</gpx>
