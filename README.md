@@ -7,7 +7,7 @@ Guía de campo estática (`index.html`, sin build) para dos personas autosuficie
 ## Etapas (calculadas sobre el track, no estimadas)
 | Día | Tramo | km | +/− m | DIN 33466 | Noche (coste: a confirmar) |
 |---|---|---|---|---|---|
-| 1 ago | Gare routière Chamonix Sud → Plan Lachat → Bellachat | 6,8 | +1.169 / −64 | 4h53 | Bellachat · 15 · contactar refugio |
+| 1 ago | Gare routière Chamonix Sud → Plan Lachat → Bellachat | 6,8 | +1.169 / −64 | 4h53 | Bellachat · 10 · email refuge.bellachat@gmail.com · tienda gratis* |
 | 2 ago | Bellachat → Planpraz → Col du Lac Cornu → Lac Cornu | 10,6 | +883 / −757 | 5h47 | Combe du Lac Cornu · 15 · online (ubicación pendiente) |
 | 3 ago | Lac Cornu → Glière → Fouet → Flégère → Lac Blanc → Chéserys | 9,6 | +802 / −854 | 5h35 | Chéserys · 30 · online |
 | 4 ago | Chéserys → Col des Montets → Le Buet → Pierre à Bérard | 12,8 | +628 / −923 | 5h32 | Pierre à Bérard · 15 · contactar refugio |
@@ -16,6 +16,7 @@ Guía de campo estática (`index.html`, sin build) para dos personas autosuficie
 | 7 ago | Lago del Brévent → Bellachat → Plan Lachat → Chamonix | 8,6 | +93 / −1.188 | 3h46 (+20 % = 4h31) | — bus 13:30 (por confirmar) |
 
 - Opcional el día 3: Lac Blanc ↔ Col du Belvédère, 3,8 km, +430/−430 m, 2h46. No está sumado a los totales.
+- *Bellachat (tarifas 2026, pendientes de validar): la tienda es gratis; cena 25 €, desayuno 13 € y picnic 13 € son opcionales. Refugio abierto del 19 jun al 26 sep de 2027. **Sin recarga de agua**: venden botellas (1,5 L 4 €, 0,5 L 1,5 €), así que hay que subir el agua desde Chamonix (está en el checklist). Tampoco hay recarga eléctrica, sala de aseo ni recogida de basura. Si está completo: zona de bivouac de la reserva, reserva gratuita y obligatoria en bivouac.nature-haute-savoie.fr, sin comidas (ubicación pendiente).
 - El día 6 incluye el desvío del Brévent al lago: 2,2 km, +24/−338 m, 1h02.
 - Los tiempos DIN no incluyen paradas.
 - Tus datos frente a los calculados: el tramo "Bellachat–Chamonix" de tu referencia mide ~5,7 km. El calculado desde la gare routière mide 6,8 km.
@@ -64,8 +65,9 @@ El GPX oficial es circular y cierra en el Col des Montets: Montets → Chéserys
 - **Mont Buet:** exigiría dos noches seguidas en la Pierre à Bérard, sin confirmar con el refugio.
 
 ## Pendiente / por verificar
-- [ ] Bivouac 2027: capacidades, normas, precio ("a confirmar" en todas las noches) y apertura de reservas.
-- [ ] Bellachat y Pierre à Bérard: confirmar el bivouac con cada refugio.
+- [ ] Bivouac 2027: capacidades, normas, precio ("a confirmar" en todas las noches salvo Bellachat) y apertura de reservas.
+- [ ] Bellachat: reservar por email y validar las tarifas 2027. Localizar la zona alternativa de la reserva.
+- [ ] Pierre à Bérard: confirmar el bivouac con el refugio.
 - [ ] Lac Cornu: ubicación exacta de la zona de bivouac (no está en OSM).
 - [ ] Bus de vuelta del 7 ago (13:30), líneas 18 y 5 (Montets ↔ Le Buet), telecabina de Planpraz y remonte de la Flégère: horarios 2027.
 - [ ] Revisar sobre el mapa IGN TOP25 todos los tramos BRouter.

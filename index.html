@@ -245,8 +245,8 @@ const nf=n=>n.toLocaleString('es-ES');
 /* ---------- Etapas ---------- */
 const IGN='verificar en mapa IGN';
 const DAYS=[
- {id:'d1',date:'1 ago',title:'Chamonix (gare routière) → Plan Lachat → Refuge de Bellachat',c:'#e0533d',night:'bellachat',nightTxt:'Bellachat · 15 tiendas · contactar con el refugio',wps:['gare_routiere','plan_lachat','bellachat'],
-  notes:['Salida a pie tras llegar a las 12:10. Tramo entero BRouter/OSM (no oficial): '+IGN+'.','Vuestra referencia "Bellachat–Chamonix" son ~5,7 km; desde la gare routière el trazado calculado sale de 6,8 km. Desnivel calculado del track, no estimado.']},
+ {id:'d1',date:'1 ago',title:'Chamonix (gare routière) → Plan Lachat → Refuge de Bellachat',c:'#e0533d',night:'bellachat',nightTxt:'Bellachat · 10 emplazamientos · reserva por email: refuge.bellachat@gmail.com',cost:'tienda gratis (tarifas 2026, validar)',wps:['gare_routiere','plan_lachat','bellachat'],
+  notes:['Salida a pie tras llegar a las 12:10. Tramo entero BRouter/OSM (no oficial): '+IGN+'.','AGUA: en Bellachat no se puede rellenar agua (solo venden botellas). Subid desde Chamonix el agua para la subida, la noche y el desayuno.','Vuestra referencia "Bellachat–Chamonix" son ~5,7 km; desde la gare routière el trazado calculado sale de 6,8 km. Desnivel calculado del track, no estimado.']},
  {id:'d2',date:'2 ago',title:'Bellachat → Planpraz → Col du Lac Cornu → Combe du Lac Cornu',c:'#f08c2e',night:'lac_cornu',nightTxt:'Combe du Lac Cornu · 15 tiendas · reserva online',wps:['bellachat','planpraz','cornu_col','lac_cornu'],
   notes:['Bellachat → Planpraz es track oficial. Planpraz → Col Cornu → Lac Cornu es BRouter/OSM (no oficial): '+IGN+'.','Ubicación exacta de la zona de bivouac del Lac Cornu: pendiente (no figura en OSM).']},
  {id:'d3',date:'3 ago',title:'Lac Cornu → Col de la Glière → Col du Fouet → Flégère → Lac Blanc → Lacs des Chéserys',c:'#e8c547',night:'biv_cheserys',nightTxt:'Chéserys · 30 tiendas · reserva online',wps:['lac_cornu','gliere','fouet','flegere','lacblanc','biv_cheserys'],opt:'d3opt',
@@ -276,7 +276,7 @@ const INFO={
  lac_cornu:{ele:null,g:null,pend:true,notes:'Zona de bivouac Lac Cornu (15 tiendas). El marcador es el lago (OSM relation 2515572), NO la zona exacta de bivouac: ubicación pendiente.',water:'Lago: filtrar o pastillas. No bañarse.',esc:'Col Cornu → Planpraz.',risk:'Medio.'},
  planpraz:{ele:1999,g:null,notes:'Estación intermedia del Brévent.',water:'Posible agua en el bar/estación (confirmar).',esc:'Telecabina a Chamonix (horario por confirmar).',risk:'Bajo.'},
  plan_lachat:{ele:1574,g:1600,notes:'Punto bajo del día. OSM 1.574 m (guía 1.600 m).',water:'Sin datos: confirmar.',esc:'Bajar a Chamonix por senderos.',risk:'Bajo.'},
- bellachat:{ele:null,g:2166,notes:'Bivouac junto al refugio, 15 tiendas: contactar con el refugio.',water:'Confirmar con el refugio.',esc:'Bajar a Chamonix por Plan Lachat (senda empinada) o ir a Planpraz (telecabina).',risk:'Medio.'},
+ bellachat:{ele:null,g:2166,notes:'Bivouac junto al refugio: 10 emplazamientos. Reserva por email: refuge.bellachat@gmail.com. Tienda gratis; cena 25 €, desayuno 13 € y picnic 13 € opcionales (tarifas 2026, pendientes de validar). Refugio abierto del 19 jun al 26 sep de 2027. Sin recarga eléctrica, sin sala de aseo y sin recogida de basura: bajad vuestros residuos. Si está completo: zona de bivouac de la reserva, con reserva gratuita y obligatoria en bivouac.nature-haute-savoie.fr y sin comidas (ubicación de esa zona pendiente).',water:'NO hay recarga de agua. El refugio vende botellas: 1,5 L 4 €, 0,5 L 1,5 €. Subid el agua desde Chamonix.',esc:'Bajar a Chamonix por Plan Lachat (senda empinada) o ir a Planpraz (telecabina).',risk:'Medio.'},
  brevent:{ele:2525,g:2525,notes:'Cumbre con estación del teleférico.',water:'Posible agua en la estación (confirmar).',esc:'Teleférico a Planpraz (horario por confirmar).',risk:'Expuesto a tormentas.'},
  biv_brevent:{ele:null,g:null,notes:'Zona de bivouac del lago del Brévent, 25 tiendas (OSM node 13584865351). VERIFICAR: fuera del track oficial (~630 m).',water:'Lago: filtrar o pastillas. No bañarse.',esc:'Bajar a pie por Bellachat → Plan Lachat → Chamonix, o ir a Planpraz (telecabina, horario por confirmar).',risk:'Medio.'},
  col_brevent:{ele:2368,g:2368,notes:'Dos escaleras equipadas en la bajada.',water:'Sin agua.',esc:'Volver a Planpraz.',risk:'Escaleras equipadas: de una en una, mochila bien ajustada.'},
@@ -307,7 +307,7 @@ dayLayers.mb_brouter=trackLayer('mb_brouter','#8b93a7',{dash:true}); overlays['<
 const pin=(color,label,pend)=>L.divIcon({className:'',html:`<div class="pin${pend?' pend':''}" style="background:${color}"><span>${label}</span></div>`,iconSize:[26,26],iconAnchor:[13,26]});
 const wpLayer=L.layerGroup().addTo(map), bivLayer=L.layerGroup().addTo(map), prohLayer=L.layerGroup().addTo(map), escLayer=L.layerGroup().addTo(map);
 const dayOf={}; DAYS.forEach((D,i)=>D.wps.forEach(w=>{ if(!(w in dayOf)) dayOf[w]=i})); dayOf.belvedere=2;
-const BIV={biv_cheserys:30,biv_brevent:25,arleve:15,lac_cornu:15,bellachat:15,berard:15};
+const BIV={biv_cheserys:30,biv_brevent:25,arleve:15,lac_cornu:15,bellachat:10,berard:15};
 const ESC=['montets','flegere','planpraz','berard'];
 const markers={};
 Object.keys(INFO).forEach(k=>{
@@ -414,7 +414,7 @@ document.getElementById('stages').innerHTML=DAYS.map((D,i)=>{const st=T.days[D.i
   ${extra(D)}
   <ol class="small">${D.wps.map(w=>`<li><a href="#mapa" data-wp="${w}">${esc(W[w].name)}</a>${INFO[w]&&INFO[w].ele!=null?` · ${nf(INFO[w].ele)} m`:(INFO[w]&&INFO[w].g?` · ${nf(INFO[w].g)} m (guía)`:'')}</li>`).join('')}</ol>
   ${D.notes.map(n=>`<div class="note ${/no oficial|pendiente|VERIFICA|DESVÍO/i.test(n)?'pend':''}">${esc(n)}</div>`).join('')}
-  <div class="row small"><span><b>Noche:</b> ${esc(D.nightTxt)}</span>${D.night?'<span class="b warn">coste: a confirmar</span>':''}</div>
+  <div class="row small"><span><b>Noche:</b> ${esc(D.nightTxt)}</span>${D.night?(D.cost?`<span class="b ok">${esc(D.cost)}</span>`:'<span class="b warn">coste: a confirmar</span>'):''}</div>
   <div class="row noprint" style="margin-top:8px"><button class="btn" data-day="${D.id}">Ver en mapa</button><button class="btn" data-gpx="${D.id}">GPX día ${i+1}</button></div>
  </div>`}).join('')+`<div class="note pend">No incluido: Mont Buet (3.096 m). Exigiría dos noches seguidas en la Pierre à Bérard, sin confirmar con el refugio.</div>`;
 document.addEventListener('click',e=>{
@@ -429,7 +429,7 @@ document.querySelectorAll('[data-km]').forEach(el=>{const t=T.days[el.dataset.km
 
 /* ---------- Tabla bivouac ---------- */
 const BIVROWS=[
- ['Bellachat','bellachat',15,'Contactar con el refugio','Junto al refugio (OSM)','1 ago (d1)'],
+ ['Bellachat','bellachat',10,'Email: <a href="mailto:refuge.bellachat@gmail.com">refuge.bellachat@gmail.com</a>','Junto al refugio (OSM). Refugio abierto 19 jun – 26 sep 2027. Sin recarga de agua (botellas: 1,5 L 4 €, 0,5 L 1,5 €), sin recarga eléctrica, sin aseo, sin recogida de basura. <b>Si está completo:</b> zona de la reserva, reserva gratuita y obligatoria en <a href="https://bivouac.nature-haute-savoie.fr/" target="_blank" rel="noopener">bivouac.nature-haute-savoie.fr</a>, sin comidas (ubicación pendiente).','1 ago (d1)','<span class="b ok">tienda gratis</span><br><span class="small mut">Opcional: cena 25 €, desayuno 13 €, picnic 13 €. Tarifas 2026, pendientes de validar.</span>'],
  ['Lac Cornu','lac_cornu',15,'Reserva online','Ubicación exacta pendiente','2 ago (d2)'],
  ['Chéserys','biv_cheserys',30,'Reserva online','OSM node, capacity:tents=30','3 ago (d3)'],
  ['Pierre à Bérard','berard',15,'Contactar con el refugio','Junto al refugio (OSM)','4 ago (d4)'],
@@ -437,7 +437,7 @@ const BIVROWS=[
  ['Lago del Brévent','biv_brevent',25,'Reserva online','OSM node, capacity:tents=25 · ~630 m fuera del track oficial (desvío marcado)','6 ago (d6)'],
 ];
 document.getElementById('bivtable').innerHTML=`<tr><th>Zona</th><th>Noche</th><th>Tiendas</th><th>Reserva</th><th>Coste</th><th>Ubicación</th></tr>`+
- BIVROWS.map(r=>`<tr><td><a href="#mapa" data-wp="${r[1]}">${r[0]}</a></td><td>${r[5]}</td><td>${r[2]}</td><td>${r[3]}</td><td><span class="b warn">a confirmar</span></td><td class="small">${r[4]}</td></tr>`).join('');
+ BIVROWS.map(r=>`<tr><td><a href="#mapa" data-wp="${r[1]}">${r[0]}</a></td><td>${r[5]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[6]||'<span class="b warn">a confirmar</span>'}</td><td class="small">${r[4]}</td></tr>`).join('');
 
 /* ---------- Logística día 7 ---------- */
 const lg=['busTime','mBus','mWait'];
@@ -462,7 +462,9 @@ const DEF=[
  ['Canon EOS R6 (con batería)','A',680,1],['RF 24-105 mm f/4L','A',700,1],['Trípode (pesa el tuyo)','A',1200,1],['Baterías extra + tarjetas','A',150,1],
 ];
 const OWN={each:'Cada uno',half:'A medias',A:'Persona A',B:'Persona B'};
-let gear=store.get('gear',null)||DEF.map(r=>({n:r[0],o:r[1],g:r[2],q:r[3],ok:false}));
+const AGUA_D1={id:'agua_d1',n:'Agua para la subida del día 1 y la noche en Bellachat: llenar en Chamonix (sin recarga en el refugio). Su peso va en "Agua cargada"',o:'each',g:0,q:1,ok:false};
+let gear=store.get('gear',null)||[{...AGUA_D1}].concat(DEF.map(r=>({n:r[0],o:r[1],g:r[2],q:r[3],ok:false})));
+if(!gear.some(x=>x.id==='agua_d1')) gear.unshift({...AGUA_D1});
 const gt=document.getElementById('gear');
 function renderGear(){
   const nA=document.getElementById('nA').value||'A', nB=document.getElementById('nB').value||'B';
@@ -491,7 +493,7 @@ gt.addEventListener('input',e=>{const t=e.target,i=t.dataset.i;if(i==null)return
 gt.addEventListener('change',e=>{if(e.target.dataset.f==='o')totals()});
 gt.addEventListener('click',e=>{const d=e.target.dataset.del;if(d!=null){gear.splice(+d,1);renderGear()}});
 document.getElementById('addItem').onclick=()=>{gear.push({n:'Nuevo',o:'each',g:0,q:1,ok:false});renderGear()};
-document.getElementById('resetGear').onclick=()=>{if(confirm('¿Restablecer la lista de material por defecto?')){gear=DEF.map(r=>({n:r[0],o:r[1],g:r[2],q:r[3],ok:false}));renderGear()}};
+document.getElementById('resetGear').onclick=()=>{if(confirm('¿Restablecer la lista de material por defecto?')){gear=[{...AGUA_D1}].concat(DEF.map(r=>({n:r[0],o:r[1],g:r[2],q:r[3],ok:false})));renderGear()}};
 ['nA','nB','food','fdays','water'].forEach(id=>{const el=document.getElementById(id);const v=store.get('in:'+id,null);if(v!=null)el.value=v;el.addEventListener('input',()=>{store.set('in:'+id,el.value);id[0]==='n'?renderGear():totals()})});
 renderGear();
 
