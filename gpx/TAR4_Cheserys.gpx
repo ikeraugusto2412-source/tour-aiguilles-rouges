@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="TAR 2027 guia" xmlns="http://www.topografix.com/GPX/1/1">
-<metadata><name>TAR3 Cheserys</name><desc>Sentido horario. Track oficial Haute-Savoie Tourisme/VisuGPX + tramos BRouter/OSM (no oficiales, verificar en mapa IGN). Simplificado 6 m; pasa por todos los waypoints.</desc></metadata>
+<metadata><name>TAR4 Cheserys</name><desc>Plan 1-8 ago 2027. Track oficial Haute-Savoie Tourisme/VisuGPX + tramos BRouter/OSM (no oficiales, verificar en mapa IGN). Simplificado 6 m.</desc></metadata>
 <wpt lat="45.9581093" lon="6.8489621"><name>Biv LacCornu?</name><sym>Campground</sym></wpt>
 <wpt lat="45.9605104" lon="6.8567813"><ele>2461</ele><name>Col Gliere</name></wpt>
 <wpt lat="45.9662086" lon="6.8743935"><ele>2320</ele><name>Col du Fouet</name></wpt>
 <wpt lat="45.9605371" lon="6.8870748"><name>Flegere</name></wpt>
 <wpt lat="45.9814668" lon="6.8918992"><ele>2352</ele><name>Lac Blanc NO</name></wpt>
 <wpt lat="45.9815132" lon="6.8962257"><name>Biv Cheserys</name><sym>Campground</sym></wpt>
-<trk><name>TAR3 Cheserys</name><trkseg>
+<trk><name>TAR4 Cheserys</name><trkseg>
 <trkpt lat="45.958635" lon="6.84871"/>
 <trkpt lat="45.958879" lon="6.848964"/>
 <trkpt lat="45.958983" lon="6.84946"/>

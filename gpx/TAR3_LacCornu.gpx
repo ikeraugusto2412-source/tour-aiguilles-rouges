@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="TAR 2027 guia" xmlns="http://www.topografix.com/GPX/1/1">
-<metadata><name>TAR2 LacCornu</name><desc>Sentido horario. Track oficial Haute-Savoie Tourisme/VisuGPX + tramos BRouter/OSM (no oficiales, verificar en mapa IGN). Simplificado 6 m; pasa por todos los waypoints.</desc></metadata>
+<metadata><name>TAR3 LacCornu</name><desc>Plan 1-8 ago 2027. Track oficial Haute-Savoie Tourisme/VisuGPX + tramos BRouter/OSM (no oficiales, verificar en mapa IGN). Simplificado 6 m.</desc></metadata>
 <wpt lat="45.9221805" lon="6.8296087"><name>Biv Bellachat</name><sym>Campground</sym></wpt>
 <wpt lat="45.9361054" lon="6.8528002"><ele>1999</ele><name>Planpraz</name></wpt>
 <wpt lat="45.9554001" lon="6.8546215"><ele>2414</ele><name>Col Lac Cornu</name></wpt>
 <wpt lat="45.9581093" lon="6.8489621"><name>Biv LacCornu?</name><sym>Campground</sym></wpt>
-<trk><name>TAR2 LacCornu</name><trkseg>
+<trk><name>TAR3 LacCornu</name><trkseg>
 <trkpt lat="45.922181" lon="6.829609"/>
 <trkpt lat="45.92199" lon="6.82901"/>
 <trkpt lat="45.92186" lon="6.82937"/>

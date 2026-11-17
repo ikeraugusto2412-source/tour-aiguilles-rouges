@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="TAR 2027 guia" xmlns="http://www.topografix.com/GPX/1/1">
-<metadata><name>TAR4 PBerard</name><desc>Sentido horario. Track oficial Haute-Savoie Tourisme/VisuGPX + tramos BRouter/OSM (no oficiales, verificar en mapa IGN). Simplificado 6 m; pasa por todos los waypoints.</desc></metadata>
+<metadata><name>TAR5 PBerard</name><desc>Plan 1-8 ago 2027. Track oficial Haute-Savoie Tourisme/VisuGPX + tramos BRouter/OSM (no oficiales, verificar en mapa IGN). Simplificado 6 m.</desc></metadata>
 <wpt lat="45.9815132" lon="6.8962257"><name>Biv Cheserys</name><sym>Campground</sym></wpt>
 <wpt lat="46.0039137" lon="6.923633"><ele>1461</ele><name>Col Montets</name></wpt>
 <wpt lat="46.0191714" lon="6.9204062"><name>Le Buet gare</name></wpt>
 <wpt lat="46.018707" lon="6.91999"><name>Le Buet park</name></wpt>
 <wpt lat="46.0030075" lon="6.8686912"><name>Biv PBerard</name><sym>Campground</sym></wpt>
-<trk><name>TAR4 PBerard</name><trkseg>
+<trk><name>TAR5 PBerard</name><trkseg>
 <trkpt lat="45.981513" lon="6.896226"/>
 <trkpt lat="45.98175" lon="6.89618"/>
 <trkpt lat="45.98182" lon="6.89647"/>

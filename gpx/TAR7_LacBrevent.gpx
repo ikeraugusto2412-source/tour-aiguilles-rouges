@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="TAR 2027 guia" xmlns="http://www.topografix.com/GPX/1/1">
-<metadata><name>TAR6 LacBrevent</name><desc>Sentido horario. Track oficial Haute-Savoie Tourisme/VisuGPX + tramos BRouter/OSM (no oficiales, verificar en mapa IGN). Simplificado 6 m; pasa por todos los waypoints.</desc></metadata>
+<metadata><name>TAR7 LacBrevent</name><desc>Plan 1-8 ago 2027. Track oficial Haute-Savoie Tourisme/VisuGPX + tramos BRouter/OSM (no oficiales, verificar en mapa IGN). Simplificado 6 m.</desc></metadata>
 <wpt lat="45.9561942" lon="6.8329349"><ele>1865</ele><name>Biv Arleve</name><sym>Campground</sym></wpt>
 <wpt lat="45.9413485" lon="6.8435255"><ele>2368</ele><name>Col Brevent</name></wpt>
 <wpt lat="45.9339121" lon="6.8378343"><ele>2525</ele><name>Le Brevent</name></wpt>
 <wpt lat="45.9302156" lon="6.8262633"><name>Biv LacBrevent</name><sym>Campground</sym></wpt>
-<trk><name>TAR6 LacBrevent</name><trkseg>
+<trk><name>TAR7 LacBrevent</name><trkseg>
 <trkpt lat="45.956194" lon="6.832935"/>
 <trkpt lat="45.95595" lon="6.83307"/>
 <trkpt lat="45.95552" lon="6.83381"/>

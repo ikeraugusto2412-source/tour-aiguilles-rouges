@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="TAR 2027 guia" xmlns="http://www.topografix.com/GPX/1/1">
-<metadata><name>TAR7 Chamonix</name><desc>Sentido horario. Track oficial Haute-Savoie Tourisme/VisuGPX + tramos BRouter/OSM (no oficiales, verificar en mapa IGN). Simplificado 6 m; pasa por todos los waypoints.</desc></metadata>
+<metadata><name>TAR8 Chamonix</name><desc>Plan 1-8 ago 2027. Track oficial Haute-Savoie Tourisme/VisuGPX + tramos BRouter/OSM (no oficiales, verificar en mapa IGN). Simplificado 6 m.</desc></metadata>
 <wpt lat="45.9302156" lon="6.8262633"><name>Biv LacBrevent</name><sym>Campground</sym></wpt>
 <wpt lat="45.9221805" lon="6.8296087"><name>Biv Bellachat</name><sym>Campground</sym></wpt>
 <wpt lat="45.9213177" lon="6.8400925"><ele>1574</ele><name>Plan Lachat</name></wpt>
 <wpt lat="45.917324" lon="6.867113"><name>Cham GareRout</name></wpt>
-<trk><name>TAR7 Chamonix</name><trkseg>
+<trk><name>TAR8 Chamonix</name><trkseg>
 <trkpt lat="45.930216" lon="6.826263"/>
 <trkpt lat="45.929931" lon="6.826842"/>
 <trkpt lat="45.929812" lon="6.825736"/>

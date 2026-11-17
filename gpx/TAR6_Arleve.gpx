@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="TAR 2027 guia" xmlns="http://www.topografix.com/GPX/1/1">
-<metadata><name>TAR5 Arleve</name><desc>Sentido horario. Track oficial Haute-Savoie Tourisme/VisuGPX + tramos BRouter/OSM (no oficiales, verificar en mapa IGN). Simplificado 6 m; pasa por todos los waypoints.</desc></metadata>
+<metadata><name>TAR6 Arleve</name><desc>Plan 1-8 ago 2027. Track oficial Haute-Savoie Tourisme/VisuGPX + tramos BRouter/OSM (no oficiales, verificar en mapa IGN). Simplificado 6 m.</desc></metadata>
 <wpt lat="46.0030075" lon="6.8686912"><name>Biv PBerard</name><sym>Campground</sym></wpt>
 <wpt lat="46.0072604" lon="6.8553249"><ele>2526</ele><name>Col Salenton</name></wpt>
 <wpt lat="45.9748132" lon="6.8005749"><ele>1996</ele><name>Ref Moede</name></wpt>
 <wpt lat="45.969924" lon="6.8270484"><ele>1597</ele><name>Pont Arleve</name></wpt>
 <wpt lat="45.9561942" lon="6.8329349"><ele>1865</ele><name>Biv Arleve</name><sym>Campground</sym></wpt>
-<trk><name>TAR5 Arleve</name><trkseg>
+<trk><name>TAR6 Arleve</name><trkseg>
 <trkpt lat="46.003008" lon="6.868691"/>
 <trkpt lat="46.00312" lon="6.86881"/>
 <trkpt lat="46.00316" lon="6.8684"/>

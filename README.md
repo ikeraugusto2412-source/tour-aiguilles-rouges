@@ -1,29 +1,32 @@
-# Tour des Aiguilles Rouges · 1–7 agosto 2027 · sentido horario
+# Tour des Aiguilles Rouges · 1–8 agosto 2027 · sentido horario
 
-Guía de campo estática (`index.html`, sin build) para dos personas autosuficientes. Ruta: **variante A invertida** (sentido horario), con salida y llegada a pie en Chamonix. Son 6 noches, solo en bivouac autorizado, sin hoteles ni campings.
+Guía de campo estática (`index.html`, sin build) para dos personas autosuficientes. Son 8 días: el D1 es la llegada a Chamonix y se duerme en camping (por confirmar); del D2 al D7 son 6 noches en tienda, y el D8 se baja a pie a Chamonix.
 
 **Última comprobación de fuentes: 17 de noviembre de 2026.**
 
-## Etapas (calculadas sobre el track, no estimadas)
-| Día | Tramo | km | +/− m | DIN 33466 | Noche (coste: a confirmar) |
-|---|---|---|---|---|---|
-| 1 ago | Gare routière Chamonix Sud → Plan Lachat → Bellachat | 6,8 | +1.169 / −64 | 4h53 | Bellachat · 10 emplazamientos · refuge.bellachat@gmail.com · tienda gratis* |
-| 2 ago | Bellachat → Planpraz → Col du Lac Cornu → Lac Cornu | 10,6 | +883 / −757 | 5h47 | Combe du Lac Cornu · 15 · reserve-bivouac74.fr · gratuita (ubicación pendiente) |
-| 3 ago | Lac Cornu → Glière → Fouet → Flégère → Lac Blanc → Chéserys | 9,6 | +802 / −854 | 5h35 | Lacs des Chéserys · 30 · reserve-bivouac74.fr · gratuita · DECIDIDO |
-| 4 ago | Chéserys → Col des Montets → Le Buet → Pierre à Bérard | 12,8 | +628 / −923 | 5h32 | Pierre à Bérard · emplazamientos alrededor del refugio (cupo 2025: 15) · paquete 44 €** |
-| 5 ago | Pierre à Bérard → Salenton → Moëde Anterne → Arlevé | 14,9 | +1.029 / −1.096 | 7h29 | Ruines d'Arlevé · 15 · reserve-bivouac74.fr · gratuita |
-| 6 ago | Arlevé → Col du Brévent → Le Brévent → lago del Brévent | 6,5 | +655 / −379 | 3h46 | Lago del Brévent · 25 · reserva obligatoria (arrêté DDT-2026-0472) · gratuita · VERIFICAR |
-| 7 ago | Lago del Brévent → Bellachat → Plan Lachat → Chamonix | 8,6 | +93 / −1.188 | 3h46 (+20 % = 4h31) | — bus 13:30 (por confirmar) |
+## Etapas
+Distancia y desnivel **medidos sobre el track** de cada día. Los tiempos son **estimados** (DIN 33466, sin paradas).
 
-- Opcional el día 3: Lac Blanc ↔ Col du Belvédère, 3,8 km, +430/−430 m, 2h46. No está sumado a los totales.
-- *Bellachat: 1 tienda = 1 emplazamiento, sin límite de personas. Tienda gratis (tarifas 2026 "en attente de validation"). Opcionales: cena 25 € (18:30), desayuno 13 € (6:00–7:30), picnic 13 €. Reserva obligatoria por email; si no avisas, el sitio se reasigna después de las 18:00. Se pueden usar los baños del refugio. **No hay** recarga de agua (venden botellas: 1,5 L 4 €, 0,5 L 1,5 €), recarga eléctrica, sala de aseo, sala para cocinar ni recogida de basura. Refugio abierto del 19 jun al 26 sep de 2027. Si está completo: zona de la reserva, reserva gratuita y obligatoria, sin comidas. El checklist incluye el agua del día 1 y una powerbank.
-- **Pierre à Bérard: paquete cena + bivouac + desayuno 44 € (fuente: Combloux; tienda incluida). Confirmar si es por persona y si hay precio solo de tienda. Contacto: refugeberard@gmail.com · +33 6 86 62 66 27 · refugeberard.wixsite.com/1924. Agua gratuita con grifos exteriores; sin duchas; sin cobertura móvil; no se cocina dentro; pago en efectivo o con tarjeta (mínimo 10 €). Cenas a las 18:30 y 19:30; la tienda se recoge por la mañana. **Apertura 2027 sin confirmar** (ficha 2026: del 20 jun a finales de agosto como mínimo).
-- Chéserys: el refugio del Lac Blanc no permite acampar en su entorno. Allí se pueden recargar aparatos y cenar reservando mesa (contact@refugelacblanc.com); fechas 2027 por publicar; cancelación: se pierde el 50 % hasta 60 días antes.
-- Lago del Brévent: la norma 2026 (arrêté DDT-2026-0472, zonas amarillas) exige reserva. Que no haga falta reservar no lo respalda ninguna fuente encontrada: **verificar**, y mientras tanto reservar.
-- **Total orientativo por persona (6 noches): 44 €** (0 € en las zonas de la reserva y la tienda en Bellachat + 44 € de Pierre à Bérard, si es por persona). **95 €** con las comidas opcionales de Bellachat (+51 €). Datos 2025/2026, verificar 2027.
-- El día 6 incluye el desvío del Brévent al lago: 2,2 km, +24/−338 m, 1h02.
-- Los tiempos DIN no incluyen paradas.
-- Tus datos frente a los calculados: el tramo "Bellachat–Chamonix" de tu referencia mide ~5,7 km. El calculado desde la gare routière mide 6,8 km.
+| Día | Tramo | km | +/− m | DIN (estimado) | Noche | Estado |
+|---|---|---|---|---|---|---|
+| D1 · 1 ago | Llegada 12:10 (gare routière Chamonix Sud). Sin ruta ni GPX | — | — | — | Chamonix, camping (ref. Les Arolles ≈ 23,90 € / 2 personas, abierto 30 may – 30 sep 2027) | por confirmar |
+| D2 · 2 ago | Chamonix → Plan Lachat → Bellachat | 6,8 | +1.169 / −64 | 4h53 | Bellachat (2.166 m) · 10 tiendas · tienda gratis | por confirmar |
+| D3 · 3 ago | Bellachat → Planpraz → Col du Lac Cornu | 10,6 | +883 / −757 | 5h47 | Col du Lac Cornu (2.414 m) · zona de 15 tiendas | por confirmar |
+| D4 · 4 ago | Lac Cornu → Glière → Fouet → Flégère → Lac Blanc → Chéserys | 9,6 | +802 / −854 | 5h35 | Chéserys (2.211 m) · 30 tiendas | **reservado** |
+| D5 · 5 ago | Chéserys → Col des Montets → Le Buet → Pierre à Bérard | 12,8 | +628 / −923 | 5h32 | Pierre à Bérard (1.924 m) · paquete 44 € | por confirmar (apertura 2027 también) |
+| D6 · 6 ago | Pierre à Bérard → Col de Salenton (2.526 m) → Moëde Anterne → Arlevé | 14,9 | +1.029 / −1.096 | 7h29 | Arlevé (1.865 m) · 15 tiendas | por confirmar |
+| D7 · 7 ago | Día de margen o etapa corta: Arlevé → Col du Brévent → Brévent → lago | 6,5 | +655 / −379 | 3h46 | Lago del Brévent · 25 tiendas · altitud **por verificar** (no es 2.525 m) | por confirmar |
+| D8 · 8 ago | Lago → Bellachat → Plan Lachat → Chamonix + bus | 8,6 | +93 / −1.188 | 3h46 (+20 % = 4h31) | — bus de vuelta: hora **por confirmar**; hay que cambiar el billete del 7 al 8 | por confirmar |
+
+- **Total medido (D2–D8): 69,8 km, +5.259 / −5.261 m**, 36h47 estimadas, de media ~10 km y +750 m por día.
+- **Total que me diste: 55,9 km, +4.197 / −4.303 m.** No coincide con lo medido. La diferencia puede deberse a la subida desde Chamonix, la bajada final y el desvío al lago del Brévent. **Por verificar.** No he repartido esos 55,9 km entre los días para no contradecir los tracks.
+- Opcional el D4: Lac Blanc ↔ Col du Belvédère, 3,8 km, +430/−430 m. No está sumado.
+- Opcional: Mont Buet (3.096 m). Requiere dos noches en la Pierre à Bérard; por confirmar. No tiene track en esta guía.
+- **Normas de bivouac (verificar 2027):** de 19:00 a 09:00, una sola noche por zona, sin fuego, prohibido bañarse y reserva obligatoria en la reserva natural.
+- **Presupuesto orientativo:** ≈ 56 € por persona (Chamonix ≈ 11,95 € + Pierre à Bérard 44 €) más el cambio de billete (por confirmar). Con las comidas opcionales de Bellachat, ≈ 107 €.
+- **Comida:** +1 día respecto al plan anterior. Son 7,5 días × 700 g ≈ 5,3 kg por persona (antes 6,5 días ≈ 4,6 kg). El gas y la comida se compran en Chamonix el D1.
+- Bellachat: sin agua, electricidad, duchas ni recogida de basura. Venden botellas (1,5 L 4 €, 0,5 L 1,5 €). Comidas opcionales: cena 25 €, desayuno 13 €, picnic 13 €.
+- Pierre à Bérard: agua gratis; sin duchas ni cobertura. Contacto: refugeberard@gmail.com · +33 6 86 62 66 27.
 
 ## Material
 La sección **Material y peso** reúne 56 ítems y son **listas orientativas: ajustadlas a vuestro material real**.
@@ -49,8 +52,8 @@ Para que los dos veáis los mismos checks, la lista de material se sincroniza co
 
 ## Ficheros
 - `index.html` — la guía (datos incrustados). Material, pesos y hora límite del día 7 se guardan en el `localStorage` del navegador.
-- `gpx/TAR1_Bellachat … TAR7_Chamonix.gpx` — un GPX por día para Garmin: track simplificado (Douglas-Peucker 6 m por tramos entre waypoints, 152–265 puntos) y waypoints con nombres de ≤ 14 caracteres. Los bivouacs llevan el símbolo *Campground*. `Lac Blanc NO` = bivouac prohibido. `Biv LacCornu?` = ubicación pendiente.
-- `gpx/TAR3_Belvedere.gpx` — opcional.
+- `gpx/TAR2_Bellachat … TAR8_Chamonix.gpx` (D2–D8; el D1 no tiene GPX) — un GPX por día para Garmin: track simplificado (Douglas-Peucker 6 m por tramos entre waypoints, 152–265 puntos) y waypoints con nombres de ≤ 14 caracteres. Los bivouacs llevan el símbolo *Campground*. `Lac Blanc NO` = bivouac prohibido. `Biv LacCornu?` = ubicación pendiente.
+- `gpx/TAR4_Belvedere.gpx` — opcional.
 - `gpx/oficial_Tour_Aiguilles_Rouges_circular.gpx` — el original, sin tocar (solo en local; no se publica en el repo porque su licencia no está clara: descárgalo desde el enlace de Fuentes).
 
 ## Cómo se ha compuesto el track
