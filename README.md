@@ -25,6 +25,17 @@ Guía de campo estática (`index.html`, sin build) para dos personas autosuficie
 - Los tiempos DIN no incluyen paradas.
 - Tus datos frente a los calculados: el tramo "Bellachat–Chamonix" de tu referencia mide ~5,7 km. El calculado desde la gare routière mide 6,8 km.
 
+## Material
+La sección **Material y peso** reúne 56 ítems y son **listas orientativas: ajustadlas a vuestro material real**.
+- **Niveles:** obligatorio (30), muy recomendable (20) y opcional / según condiciones (6). Cada nivel tiene su color y su contador de preparados.
+- **Categorías:** Documentos y reservas, Dormir, Cocina y agua, Navegación y comunicación, Ropa, Seguridad y botiquín, Higiene, Cámara y vídeo, Compartido.
+- **Por ítem:** quién lo lleva, peso editable, "preparado", "falta comprar", nota y motivo.
+- **Herramientas:** filtros por nivel, categoría, persona y estado; barra de progreso; "mostrar solo lo que falta"; exportar CSV (separado por `;`, abre en Excel); imprimir solo la lista.
+- **Pesos:** solo se usan los que ya tenía la guía (etiqueta *est.*, a sustituir por los de la báscula) y los de ficha: Simond MT900 domo 2P 1.950 g (Decathlon) y Canon R6 + RF 24-105 1.380 g. El resto queda vacío con la etiqueta **pesar** y no suma; la calculadora dice cuántos faltan por pesar. Los opcionales solo suman si se marca "Incluir opcionales".
+- **Añadidos fuera de tu lista:** la mochila (1.500 g est.), para que el peso total sea realista, y el agua del día 1, que se cuenta en "Agua cargada".
+- **Sección "No llevar / prohibido":** dron, altavoz, fuego (verificar si el hornillo de gas está permitido), perros y bañarse en los lagos.
+- La lista se guarda en el navegador (`localStorage`, clave nueva `gear2`). Las casillas marcadas en la lista anterior no se trasladan.
+
 ## Ficheros
 - `index.html` — la guía (datos incrustados). Material, pesos y hora límite del día 7 se guardan en el `localStorage` del navegador.
 - `gpx/TAR1_Bellachat … TAR7_Chamonix.gpx` — un GPX por día para Garmin: track simplificado (Douglas-Peucker 6 m por tramos entre waypoints, 152–265 puntos) y waypoints con nombres de ≤ 14 caracteres. Los bivouacs llevan el símbolo *Campground*. `Lac Blanc NO` = bivouac prohibido. `Biv LacCornu?` = ubicación pendiente.

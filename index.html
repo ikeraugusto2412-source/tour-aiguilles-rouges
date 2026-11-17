@@ -73,11 +73,37 @@ dl.kv{display:grid;grid-template-columns:92px 1fr;gap:4px 10px;margin:10px 0;fon
 dl.kv dt{color:var(--mut)} dl.kv dd{margin:0}
 .attr{font-size:.72rem;color:var(--mut);margin-top:4px}
 /* gear */
-.gear td input[type=text]{width:100%;min-width:120px}
-.gear input,.gear select,.inp{background:var(--bg);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:6px 7px;font:inherit;font-size:.86rem}
-.gear input[type=number]{width:74px}
-.gear input[type=checkbox]{width:20px;height:20px;accent-color:var(--ok)}
-.gear tr.done td:not(:first-child){opacity:.55}
+.inp{background:var(--bg);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:6px 7px;font:inherit;font-size:.86rem}
+.lvls{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.prog{height:10px;background:var(--bg2);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+.prog div{height:100%;width:0;background:var(--ok);transition:width .25s}
+.filters{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0}
+.filters .btn{grid-column:1/-1;justify-content:center}
+.filters select{min-width:0;width:100%}
+.gc select{max-width:100%;min-width:0}
+.gi,.gm,.gc{min-width:0}
+#material .card{overflow:hidden}
+.filters .btn[aria-pressed=true]{border-color:var(--ok);color:var(--ok)}
+@media(min-width:760px){.filters{grid-template-columns:repeat(4,1fr) auto}.filters .btn{grid-column:auto}}
+.gcat{margin:14px 0 6px;font-size:.95rem}
+.gi{display:flex;gap:10px;padding:9px 10px;border:1px solid var(--line);border-left:4px solid var(--lc);border-radius:10px;margin:6px 0;background:var(--bg2)}
+.gi.done{opacity:.6}
+.ck input,.buy input{width:20px;height:20px;accent-color:var(--ok)}
+.ck{padding-top:4px}
+.gm{flex:1;min-width:0}
+.gt{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.gt textarea{flex:1;min-width:0;resize:none;overflow:hidden;background:transparent;border:0;border-bottom:1px dashed transparent;color:var(--txt);font:inherit;font-weight:600;padding:2px 0;line-height:1.3}
+.gt textarea:focus{border-bottom-color:var(--mut);outline:none}
+.lv{font-size:.7rem;color:var(--lc);border:1px solid var(--lc);border-radius:99px;padding:1px 7px;white-space:nowrap}
+.why{font-size:.8rem;color:var(--mut);margin:2px 0 6px}
+.gc{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:.84rem}
+.gc select,.gc input[type=number],.note2{background:var(--bg);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:5px 6px;font:inherit;font-size:.84rem}
+.gc input[type=number]{width:76px}
+.buy{display:inline-flex;gap:5px;align-items:center;color:var(--warn)}
+.note2{width:100%;margin-top:6px}
+.x2{padding:3px 9px}
+.gc select.lvsel{font-size:.74rem;padding:2px 4px;color:var(--lc);border-color:var(--lc);border-radius:99px;width:auto}
+.nolist{list-style:none;padding:0;margin:0}.nolist li{margin:6px 0}
 .tot{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:10px}
 .leaflet-container{font:13px var(--f)}
 .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--card);color:var(--txt)}
@@ -89,6 +115,10 @@ dl.kv dt{color:var(--mut)} dl.kv dd{margin:0}
 footer{color:var(--mut);font-size:.8rem;padding:20px 16px 40px;text-align:center}
 .printonly{display:none}
 @media print{
+  body.print-gear main>section:not(#material),body.print-gear header,body.print-gear footer{display:none!important}
+  .gi{break-inside:avoid;background:#fff}
+  .filters,.x2{display:none!important}
+  .gi input,.gi select{border:0!important;background:none!important;color:#000}
   :root{--bg:#fff;--bg2:#f3f3f3;--card:#fff;--line:#ccc;--txt:#111;--mut:#555}
   body{font-size:11pt}
   nav,#sheet,.noprint,.chips,.leaflet-control-container{display:none!important}
@@ -184,6 +214,9 @@ footer{color:var(--mut);font-size:.8rem;padding:20px 16px 40px;text-align:center
 
 <section id="material">
   <h2>Material y peso</h2>
+  <div class="note"><b>Listas orientativas: ajustadlas a vuestro material real.</b> Los pesos son editables. Si un peso no se conoce, el campo queda vacío con la etiqueta <span class="b pend">pesar</span>. Las etiquetas indican el origen del peso: <i>ficha</i> = ficha del fabricante o de la tienda; <i>est.</i> = estimación previa de esta guía, a sustituir por el peso de vuestra báscula.</div>
+  <div class="note bad"><b>Sin ducha ni recarga en Bellachat. Agua gratuita en la Pierre à Bérard. Sin cobertura en la Pierre à Bérard.</b></div>
+
   <div class="card">
     <div class="row small" style="margin-bottom:8px">
       <label>Persona A <input class="inp" id="nA" value="Persona A" style="width:120px"></label>
@@ -191,14 +224,41 @@ footer{color:var(--mut);font-size:.8rem;padding:20px 16px 40px;text-align:center
       <label>Comida g/persona/día <input class="inp" type="number" id="food" value="700" style="width:80px"></label>
       <label>Días de comida <input class="inp" type="number" id="fdays" value="6.5" step="0.5" style="width:70px"></label>
       <label>Agua cargada L/persona <input class="inp" type="number" id="water" value="1.5" step="0.5" style="width:70px"></label>
+      <label class="row" style="gap:6px"><input type="checkbox" id="incOpt"> Incluir opcionales en el peso</label>
     </div>
-    <p class="small mut">Pesos <b>orientativos y editables</b> (cámara y objetivo según ficha del fabricante; el resto, estimación a sustituir por tu báscula). "Cada uno" = una unidad por persona; "A medias" = se reparte 50/50.</p>
-    <div class="tw"><table class="gear" id="gear"></table></div>
-    <div class="row noprint" style="margin-top:8px">
-      <button class="btn" id="addItem">+ Añadir</button>
+    <p class="small mut">Comida y agua son estimaciones editables. El día 1 sube sin recarga hasta Bellachat: ajusta "Agua cargada".</p>
+    <div class="tot" id="totals"></div>
+  </div>
+
+  <div class="card">
+    <div class="lvls" id="lvlCounters"></div>
+    <div class="prog" aria-label="Progreso total"><div id="progBar"></div></div>
+    <p class="small mut" id="progTxt" style="margin:.3rem 0 0"></p>
+    <div class="filters noprint">
+      <select class="inp" id="fLvl" aria-label="Filtrar por nivel"><option value="">Todos los niveles</option></select>
+      <select class="inp" id="fCat" aria-label="Filtrar por categoría"><option value="">Todas las categorías</option></select>
+      <select class="inp" id="fWho" aria-label="Filtrar por persona"><option value="">Todas las personas</option></select>
+      <select class="inp" id="fState" aria-label="Filtrar por estado"><option value="">Todos los estados</option><option value="todo">Por preparar</option><option value="ok">Preparado</option><option value="buy">Falta comprar</option><option value="weigh">Sin pesar</option></select>
+      <button class="btn" id="onlyMissing" aria-pressed="false">Mostrar solo lo que falta</button>
+    </div>
+    <div id="gearList"></div>
+    <div class="row noprint" style="margin-top:10px">
+      <button class="btn" id="addItem">+ Añadir ítem</button>
+      <button class="btn" id="exportCsv">Exportar CSV</button>
+      <button class="btn" id="printGear">Imprimir / PDF de la lista</button>
       <button class="btn" id="resetGear">Restablecer lista</button>
     </div>
-    <div class="tot" id="totals"></div>
+  </div>
+
+  <div class="card">
+    <h3>No llevar / prohibido</h3>
+    <ul class="small nolist">
+      <li><span class="b bad">Dron</span> El sobrevuelo está prohibido por debajo de 200, 300 o 1.000 m según la reserva.</li>
+      <li><span class="b bad">Altavoz</span> Prohibido en las zonas de bivouac.</li>
+      <li><span class="b bad">Fuego</span> Prohibido. <span class="b warn">verificar</span> si el hornillo de gas está permitido.</li>
+      <li><span class="b bad">Perros</span> Prohibidos en las reservas.</li>
+      <li><span class="b bad">Bañarse</span> Prohibido en los lagos.</li>
+    </ul>
   </div>
 </section>
 
@@ -456,49 +516,159 @@ function plan7(){
 plan7();
 
 /* ---------- Material y peso ---------- */
-const DEF=[
- ['Tienda 2 personas','half',1600,1],['Saco de dormir','each',900,1],['Esterilla','each',450,1],['Mochila','each',1500,1],
- ['Hornillo + cartucho','half',450,1],['Cazo / taza / cubierto','half',300,1],['Filtro de agua','A',100,1],['Pastillas potabilizadoras (reserva)','B',20,1],
- ['Botiquín','half',300,1],['Frontal + pilas','each',100,1],['Chaqueta impermeable','each',350,1],['Plumífero / forro','each',350,1],
- ['Capa térmica + ropa de recambio','each',600,1],['Gorro, guantes, buff','each',150,1],['Gafas de sol + crema','each',120,1],['Bastones','each',450,1],
- ['Mapa IGN 3630 OT + brújula','B',150,1],['Móvil + batería externa','each',400,1],['Reloj / GPS Garmin','each',60,1],['Higiene + bolsa de residuos','half',250,1],
- ['Canon EOS R6 (con batería)','A',680,1],['RF 24-105 mm f/4L','A',700,1],['Trípode (pesa el tuyo)','A',1200,1],['Baterías extra + tarjetas','A',150,1],
-];
+const LVL={ob:{t:'Obligatorio',c:'#ef5b5b'},mr:{t:'Muy recomendable',c:'#e8b54a'},op:{t:'Opcional / según condiciones',c:'#6f8cff'}};
+const CAT={doc:'Documentos y reservas',dor:'Dormir',coc:'Cocina y agua',nav:'Navegación y comunicación',ropa:'Ropa',seg:'Seguridad y botiquín',hig:'Higiene',cam:'Cámara y vídeo (solo la persona con cámara)',com:'Compartido'};
 const OWN={each:'Cada uno',half:'A medias',A:'Persona A',B:'Persona B'};
-const POWERBANK={id:'powerbank',n:'Powerbank: sin recarga eléctrica en Bellachat ni en los bivouacs (su peso va en "Móvil + batería externa")',o:'each',g:0,q:1,ok:false};
-const AGUA_D1={id:'agua_d1',n:'Agua para la subida del día 1 y la noche en Bellachat: llenar en Chamonix (sin recarga en el refugio). Su peso va en "Agua cargada"',o:'each',g:0,q:1,ok:false};
-let gear=store.get('gear',null)||[{...AGUA_D1},{...POWERBANK}].concat(DEF.map(r=>({n:r[0],o:r[1],g:r[2],q:r[3],ok:false})));
-if(!gear.some(x=>x.id==='powerbank')) gear.unshift({...POWERBANK});
-if(!gear.some(x=>x.id==='agua_d1')) gear.unshift({...AGUA_D1});
-const gt=document.getElementById('gear');
+// [id, categoría, nivel, nombre, quién, peso g (null = pesar), origen del peso, motivo]
+const DEF=[
+ ['dni','doc','ob','DNI o pasaporte','each',null,'','Identificación durante todo el viaje.'],
+ ['tse','doc','ob','Tarjeta sanitaria europea + seguro con rescate en montaña','each',null,'','El rescate en montaña no es gratis.'],
+ ['resv','doc','ob','Confirmaciones de reserva de bivouac (impresas u offline)','each',null,'','Los guardas comprueban las reservas y no hay cobertura en la Pierre à Bérard.'],
+ ['cash','doc','ob','Efectivo','each',null,'','La Pierre à Bérard cobra en efectivo o con tarjeta (mínimo 10 €).'],
+ ['cash2','doc','mr','Pequeña reserva de efectivo, guardada aparte','each',null,'','Por si se pierde la cartera o falla la tarjeta.'],
+ ['docdig','doc','mr','Copias digitales de los documentos','each',null,'','Respaldo si se pierden los originales.'],
+ ['tienda','dor','ob','Tienda Simond MT900 domo 2P','half',1950,'ficha','Seis noches de bivouac. Peso: ficha de Decathlon.'],
+ ['saco','dor','ob','Saco con temperatura de confort ~0–5 °C','each',900,'est','Noches a 1.900–2.200 m.'],
+ ['esterilla','dor','ob','Esterilla','each',450,'est','Aislamiento del suelo.'],
+ ['ropadormir','dor','mr','Ropa seca solo para dormir','each',null,'','Dormir seco y caliente aunque llueva de día.'],
+ ['tapones','dor','mr','Tapones para el ruido del viento','each',null,'','Viento y lona de noche.'],
+ ['hornillo','coc','ob','Hornillo + gas','half',450,'est','El gas se compra en Chamonix: no se puede llevar en avión.'],
+ ['olla','coc','ob','Olla y cubiertos','half',300,'est','En la Pierre à Bérard no se cocina dentro.'],
+ ['mechero','coc','ob','Mechero','each',null,'','Encender el hornillo; mejor uno cada uno.'],
+ ['filtro','coc','ob','Filtro o pastillas potabilizadoras','A',100,'est','Agua de lagos y torrentes.'],
+ ['aguad1','coc','ob','Agua para la subida del día 1 (llenar en Chamonix)','each',0,'agua','Bellachat no da agua. Su peso se cuenta en "Agua cargada".'],
+ ['aguacap','coc','ob','2–3 L de capacidad de agua','each',null,'','Bellachat no da agua y la subida del día 1 es larga.'],
+ ['emerg','coc','mr','Comida de emergencia y electrolitos','each',null,'','Etapas largas (día 5) y retrasos por meteo.'],
+ ['mapas','nav','ob','Mapas IGN Top 25 (3630OT, 3531ET, 3530ET) + brújula','B',null,'','Hay tramos no oficiales que se deben comprobar en el IGN.'],
+ ['gpx','nav','ob','Track GPX offline en el móvil y en el Garmin','each',60,'est','Sin cobertura en zonas altas. Peso: reloj/GPS Garmin.'],
+ ['pb','nav','ob','Powerbank','each',null,'','Bellachat no tiene recarga.'],
+ ['tel','nav','ob','Teléfono (112)','each',null,'','Emergencias: 112.'],
+ ['botas','ropa','ob','Botas ya rodadas','each',null,'','Siete días seguidos: evitar ampollas.'],
+ ['chubasquero','ropa','ob','Chubasquero','each',350,'est','Tormentas de tarde frecuentes en agosto.'],
+ ['abrigo','ropa','ob','Capa de abrigo (plumas o forro)','each',350,'est','Noches y collados por encima de 2.400 m.'],
+ ['gorro','ropa','ob','Gorro y guantes finos','each',150,'est','Frío en los collados y de noche.'],
+ ['calcetines','ropa','ob','Calcetines de repuesto','each',null,'','Pies secos.'],
+ ['gafas','ropa','ob','Gafas de sol','each',null,'','Radiación a 2.500 m y neveros.'],
+ ['solar','ropa','ob','Protección solar y labial','half',null,'','Radiación en altura.'],
+ ['bastones','ropa','mr','Bastones','each',450,'est','Bajadas largas (día 7: −1.188 m).'],
+ ['estancas','ropa','mr','Cubremochila y bolsas estancas','each',null,'','Lluvia.'],
+ ['botiquin','seg','ob','Botiquín con material para ampollas','half',300,'est','Primeros auxilios y pies.'],
+ ['manta','seg','ob','Manta térmica','each',null,'','Hipotermia o espera de un rescate.'],
+ ['silbato','seg','ob','Silbato','each',null,'','Señal de socorro.'],
+ ['frontal','seg','ob','Frontal con pilas de repuesto','each',100,'est','Llegadas tarde y salida temprana el día 7.'],
+ ['crampones','seg','op','Crampones o microespigas ligeros','each',null,'','Neveros (p. ej. Col de Salenton): la nieve puede quedar en julio.'],
+ ['polainas','seg','op','Polainas','each',null,'','Neveros y barro.'],
+ ['basura','hig','ob','Bolsas para llevarse la basura y el papel higiénico','half',null,'','La reserva lo exige y Bellachat no recoge basura.'],
+ ['toalla','hig','mr','Toalla de microfibra','each',null,'','No hay duchas en Bellachat ni en la Pierre à Bérard.'],
+ ['higiene','hig','mr','Higiene básica','half',250,'est','Kit compartido.'],
+ ['repelente','hig','op','Repelente','half',null,'','Insectos en zonas bajas y cerca de los lagos.'],
+ ['r6','cam','mr','Canon R6 + RF 24-105 mm f/4L','A',1380,'ficha','Fotografía. Peso: ficha del fabricante (680 + 700 g).'],
+ ['bat','cam','mr','Baterías de repuesto y tarjetas','A',150,'est','No hay recarga en Bellachat.'],
+ ['fundacam','cam','mr','Funda de lluvia para la cámara','A',null,'','Lluvia.'],
+ ['acolch','cam','mr','Bolsa acolchada','A',null,'','Proteger la cámara dentro de la mochila.'],
+ ['pano','cam','mr','Paño de limpieza','A',null,'','Polvo y gotas.'],
+ ['silice','cam','mr','Bolsa de sílice','A',null,'','Humedad nocturna en la tienda.'],
+ ['clip','cam','mr','Clip de hombro','A',null,'','Cámara accesible sin quitarse la mochila.'],
+ ['pbcam','cam','mr','Powerbank para la cámara','A',null,'','No hay recarga en Bellachat.'],
+ ['tripode','cam','op','Trípode','A',1200,'est','Decidir si compensa el peso.'],
+ ['nd','cam','op','Filtros ND','A',null,'','Agua en movimiento y cielos.'],
+ ['accion','cam','op','Cámara de acción','A',null,'','Vídeo en marcha.'],
+ ['mochila','com','ob','Mochila','each',1500,'est','No venía en la lista; añadida para que la calculadora cuente su peso.'],
+ ['cinta','com','mr','Cinta americana y navaja','half',null,'','Reparaciones.'],
+ ['piquetas','com','mr','Piquetas y cuerda de repuesto para el viento','half',null,'','Rachas en collados y zonas abiertas.'],
+ ['pb2','com','mr','Powerbank de repuesto','half',null,'','Sin recarga en Bellachat.'],
+];
+const mk=r=>({id:r[0],cat:r[1],lvl:r[2],n:r[3],o:r[4],g:r[5],src:r[6],why:r[7],ok:false,buy:false,note:''});
+let gear=store.get('gear2',null);
+if(!Array.isArray(gear)){ gear=DEF.map(mk);
+  // conserva "preparado" de la lista anterior si existía
+  const old=store.get('gear',null); if(Array.isArray(old)&&old.some(x=>x.ok)) store.set('gear_v1_backup',old); }
+DEF.forEach(r=>{ if(!gear.some(x=>x.id===r[0])) gear.push(mk(r)); });
+const gl=document.getElementById('gearList');
+const nameOf=k=>k==='A'?(document.getElementById('nA').value||'A'):k==='B'?(document.getElementById('nB').value||'B'):OWN[k];
+let onlyMissing=store.get('onlyMissing',false);
+const F={lvl:'',cat:'',who:'',state:''};
+const fLvl=document.getElementById('fLvl'),fCat=document.getElementById('fCat'),fWho=document.getElementById('fWho'),fState=document.getElementById('fState');
+Object.entries(LVL).forEach(([k,v])=>fLvl.add(new Option(v.t,k)));
+Object.entries(CAT).forEach(([k,v])=>fCat.add(new Option(v,k)));
+function fillWho(){const v=fWho.value;fWho.length=1;Object.keys(OWN).forEach(k=>fWho.add(new Option(nameOf(k),k)));fWho.value=v}
+fillWho();
+function visible(it){
+  if(F.lvl&&it.lvl!==F.lvl) return false;
+  if(F.cat&&it.cat!==F.cat) return false;
+  if(F.who&&(F.who==='A'||F.who==='B')&&!(it.o===F.who||it.o==='each'||it.o==='half')) return false;
+  if(F.who&&(F.who==='each'||F.who==='half')&&it.o!==F.who) return false;
+  if(F.state==='todo'&&it.ok) return false;
+  if(F.state==='ok'&&!it.ok) return false;
+  if(F.state==='buy'&&!it.buy) return false;
+  if(F.state==='weigh'&&it.g!=null&&it.g!=='') return false;
+  if(onlyMissing&&it.ok) return false;
+  return true;
+}
 function renderGear(){
-  const nA=document.getElementById('nA').value||'A', nB=document.getElementById('nB').value||'B';
-  gt.innerHTML=`<tr><th>✓</th><th>Material</th><th>g/ud</th><th>Ud</th><th>Quién</th><th class="noprint"></th></tr>`+gear.map((it,i)=>`<tr class="${it.ok?'done':''}">
-   <td><input type="checkbox" data-i="${i}" data-f="ok" ${it.ok?'checked':''} aria-label="Preparado"></td>
-   <td><input type="text" data-i="${i}" data-f="n" value="${esc(it.n)}"></td>
-   <td><input type="number" min="0" data-i="${i}" data-f="g" value="${it.g}"></td>
-   <td><input type="number" min="0" data-i="${i}" data-f="q" value="${it.q}" style="width:52px"></td>
-   <td><select data-i="${i}" data-f="o">${Object.entries(OWN).map(([k,v])=>`<option value="${k}" ${it.o===k?'selected':''}>${k==='A'?esc(nA):k==='B'?esc(nB):v}</option>`).join('')}</select></td>
-   <td class="noprint"><button class="btn" data-del="${i}" aria-label="Quitar" style="padding:4px 9px">×</button></td></tr>`).join('');
+  fillWho();
+  const groups={};
+  gear.forEach((it,i)=>{ if(visible(it)) (groups[it.cat]=groups[it.cat]||[]).push([it,i]) });
+  const order=Object.keys(CAT).concat(Object.keys(groups).filter(k=>!CAT[k]));
+  gl.innerHTML=order.filter(c=>groups[c]).map(c=>`<h3 class="gcat">${esc(CAT[c]||c)} <span class="small mut">${groups[c].filter(x=>x[0].ok).length}/${groups[c].length}</span></h3>`+
+    groups[c].map(([it,i])=>{const L=LVL[it.lvl]||LVL.op; const noW=it.g==null||it.g==='';
+     return `<div class="gi${it.ok?' done':''}" style="--lc:${L.c}" data-i="${i}">
+      <label class="ck" title="Preparado"><input type="checkbox" data-f="ok" ${it.ok?'checked':''} aria-label="Preparado"></label>
+      <div class="gm">
+        <div class="gt"><textarea data-f="n" rows="${Math.max(1,Math.ceil(it.n.length/34))}" aria-label="Nombre">${esc(it.n)}</textarea></div>
+        ${it.why?`<div class="why">${esc(it.why)}</div>`:''}
+        <div class="gc">
+          <select data-f="lvl" aria-label="Nivel" class="lvsel">${Object.entries(LVL).map(([k,v])=>`<option value="${k}" ${it.lvl===k?'selected':''}>${v.t.split(' /')[0]}</option>`).join('')}</select>
+          <select data-f="o" aria-label="Quién lo lleva">${Object.keys(OWN).map(k=>`<option value="${k}" ${it.o===k?'selected':''}>${esc(nameOf(k))}</option>`).join('')}</select>
+          <span class="wt"><input type="number" min="0" data-f="g" value="${noW?'':it.g}" placeholder="g" aria-label="Peso en gramos"> g ${noW?'<span class="b pend">pesar</span>':it.src==='agua'?'<span class="b">en agua cargada</span>':it.src==='ficha'?'<span class="b ok">ficha</span>':it.src==='est'?'<span class="b">est.</span>':''}</span>
+          <label class="buy"><input type="checkbox" data-f="buy" ${it.buy?'checked':''}> falta comprar</label>
+          <button class="btn x2 noprint" data-del="${i}" aria-label="Quitar ítem">×</button>
+        </div>
+        <input type="text" class="note2" data-f="note" value="${esc(it.note)}" placeholder="Nota" aria-label="Nota">
+      </div></div>`}).join('')).join('')||'<p class="small mut">Ningún ítem con estos filtros.</p>';
+  document.getElementById('onlyMissing').setAttribute('aria-pressed',onlyMissing);
   totals();
 }
 function totals(){
-  let a=0,b=0;
-  gear.forEach(it=>{const w=(+it.g||0)*(+it.q||0); if(it.o==='each'){a+=w;b+=w} else if(it.o==='half'){a+=w/2;b+=w/2} else if(it.o==='A')a+=w; else b+=w;});
+  const inc=document.getElementById('incOpt').checked;
+  let a=0,b=0,miss=0;
+  gear.forEach(it=>{ if(it.lvl==='op'&&!inc) return; if(it.g==null||it.g===''){miss++;return}
+    const w=+it.g||0; if(it.o==='each'){a+=w;b+=w} else if(it.o==='half'){a+=w/2;b+=w/2} else if(it.o==='A')a+=w; else b+=w;});
   const food=(+document.getElementById('food').value||0)*(+document.getElementById('fdays').value||0);
   const water=(+document.getElementById('water').value||0)*1000;
-  const nA=document.getElementById('nA').value||'A', nB=document.getElementById('nB').value||'B';
   const kg=x=>(x/1000).toLocaleString('es-ES',{minimumFractionDigits:1,maximumFractionDigits:1})+' kg';
-  const done=gear.filter(x=>x.ok).length;
-  document.getElementById('totals').innerHTML=[[nA,a],[nB,b]].map(([n,w])=>`<div class="stat"><span>${esc(n)}</span><b>${kg(w+food+water)}</b><span>base ${kg(w)} + comida ${kg(food)} + agua ${kg(water)}</span></div>`).join('')+
-   `<div class="stat"><span>Checklist</span><b>${done}/${gear.length}</b><span>preparado</span></div>`;
-  store.set('gear',gear);
+  document.getElementById('totals').innerHTML=[['A',a],['B',b]].map(([k,w])=>`<div class="stat"><span>${esc(nameOf(k))}</span><b>${kg(w+food+water)}</b><span>material ${kg(w)} + comida ${kg(food)} + agua ${kg(water)}</span></div>`).join('')+
+   `<div class="stat"><span>Sin pesar</span><b>${miss}</b><span>ítems no sumados${inc?'':' (opcionales excluidos)'}</span></div>`;
+  // contadores por nivel y progreso
+  const c=Object.keys(LVL).map(k=>{const l=gear.filter(x=>x.lvl===k);return `<span class="b" style="border-color:${LVL[k].c};color:${LVL[k].c}">${LVL[k].t.split(' /')[0].toLowerCase()} ${l.filter(x=>x.ok).length}/${l.length}</span>`});
+  const buy=gear.filter(x=>x.buy).length;
+  document.getElementById('lvlCounters').innerHTML=c.join('')+(buy?`<span class="b warn">falta comprar ${buy}</span>`:'');
+  const done=gear.filter(x=>x.ok).length, pct=gear.length?Math.round(done/gear.length*100):0;
+  document.getElementById('progBar').style.width=pct+'%';
+  document.getElementById('progTxt').textContent=`${done} de ${gear.length} preparados (${pct} %)`;
+  store.set('gear2',gear);
 }
-gt.addEventListener('input',e=>{const t=e.target,i=t.dataset.i;if(i==null)return;const f=t.dataset.f;gear[i][f]=f==='ok'?t.checked:(f==='g'||f==='q'?+t.value:t.value);if(f==='ok'){t.closest('tr').classList.toggle('done',t.checked)}totals()});
-gt.addEventListener('change',e=>{if(e.target.dataset.f==='o')totals()});
-gt.addEventListener('click',e=>{const d=e.target.dataset.del;if(d!=null){gear.splice(+d,1);renderGear()}});
-document.getElementById('addItem').onclick=()=>{gear.push({n:'Nuevo',o:'each',g:0,q:1,ok:false});renderGear()};
-document.getElementById('resetGear').onclick=()=>{if(confirm('¿Restablecer la lista de material por defecto?')){gear=[{...AGUA_D1},{...POWERBANK}].concat(DEF.map(r=>({n:r[0],o:r[1],g:r[2],q:r[3],ok:false})));renderGear()}};
+gl.addEventListener('input',e=>{const t=e.target,row=t.closest('[data-i]');if(!row||!t.dataset.f)return;const it=gear[+row.dataset.i],f=t.dataset.f;
+  if(f==='ok'||f==='buy'){it[f]=t.checked; if(f==='ok')row.classList.toggle('done',t.checked)}
+  else if(f==='g'){it.g=t.value===''?null:+t.value; it.src=t.value===''?'':'user'}
+  else it[f]=t.value;
+  totals();});
+gl.addEventListener('change',e=>{const f=e.target.dataset.f; if(f==='o'||f==='lvl'||f==='g'||f==='ok'||f==='buy') renderGear()});
+gl.addEventListener('click',e=>{const d=e.target.dataset.del;if(d!=null&&confirm('¿Quitar "'+gear[+d].n+'"?')){gear.splice(+d,1);renderGear()}});
+[[fLvl,'lvl'],[fCat,'cat'],[fWho,'who'],[fState,'state']].forEach(([el,k])=>el.addEventListener('change',()=>{F[k]=el.value;renderGear()}));
+document.getElementById('onlyMissing').onclick=()=>{onlyMissing=!onlyMissing;store.set('onlyMissing',onlyMissing);renderGear()};
+document.getElementById('addItem').onclick=()=>{gear.push({id:'u'+Date.now(),cat:F.cat||'com',lvl:F.lvl||'mr',n:'Nuevo ítem',o:'each',g:null,src:'',why:'',ok:false,buy:false,note:''});F.state='';fState.value='';onlyMissing=false;renderGear()};
+document.getElementById('resetGear').onclick=()=>{if(confirm('¿Restablecer la lista de material por defecto? Se perderán vuestros cambios.')){gear=DEF.map(mk);renderGear()}};
+document.getElementById('exportCsv').onclick=()=>{
+  const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+  const rows=[['Categoría','Nivel','Ítem','Quién','Peso (g)','Origen peso','Preparado','Falta comprar','Nota','Motivo']].concat(gear.map(it=>[CAT[it.cat]||it.cat,(LVL[it.lvl]||{}).t,it.n,nameOf(it.o),it.g??'',it.g==null?'pesar':it.src==='ficha'?'ficha':it.src==='est'?'estimado':'usuario',it.ok?'sí':'no',it.buy?'sí':'no',it.note,it.why]));
+  const blob=new Blob(['﻿'+rows.map(r=>r.map(q).join(';')).join('\r\n')],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='TAR2027_material.csv';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500);
+};
+document.getElementById('printGear').onclick=()=>{document.body.classList.add('print-gear');window.print()};
+window.addEventListener('afterprint',()=>document.body.classList.remove('print-gear'));
+document.getElementById('incOpt').checked=store.get('in:incOpt',false);
+document.getElementById('incOpt').addEventListener('change',e=>{store.set('in:incOpt',e.target.checked);totals()});
 ['nA','nB','food','fdays','water'].forEach(id=>{const el=document.getElementById(id);const v=store.get('in:'+id,null);if(v!=null)el.value=v;el.addEventListener('input',()=>{store.set('in:'+id,el.value);id[0]==='n'?renderGear():totals()})});
 renderGear();
 
