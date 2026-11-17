@@ -230,6 +230,13 @@ footer{color:var(--mut);font-size:.8rem;padding:20px 16px 40px;text-align:center
     <div class="tot" id="totals"></div>
   </div>
 
+  <div class="card noprint" id="syncBox">
+    <h3>Lista compartida</h3>
+    <p id="syncState" class="small" style="margin:.2rem 0 .5rem"></p>
+    <div class="row"><button class="btn" id="syncCreate">Crear viaje compartido</button><button class="btn pri" id="syncCopy">Copiar enlace para tu amigo</button><button class="btn" id="syncLeave">Dejar de compartir</button></div>
+    <p class="small mut" style="margin-bottom:0">Con el viaje compartido, los dos veis los mismos checks, pesos, notas e ítems; se actualiza cada pocos segundos. Si dos personas editan el mismo ítem a la vez, gana el último cambio. Sin conexión se guarda aquí y se envía al volver. El enlace lleva un código secreto: quien lo tenga puede editar la lista.</p>
+  </div>
+
   <div class="card">
     <div class="lvls" id="lvlCounters"></div>
     <div class="prog" aria-label="Progreso total"><div id="progBar"></div></div>
@@ -583,7 +590,8 @@ let gear=store.get('gear2',null);
 if(!Array.isArray(gear)){ gear=DEF.map(mk);
   // conserva "preparado" de la lista anterior si existía
   const old=store.get('gear',null); if(Array.isArray(old)&&old.some(x=>x.ok)) store.set('gear_v1_backup',old); }
-DEF.forEach(r=>{ if(!gear.some(x=>x.id===r[0])) gear.push(mk(r)); });
+const gearDel=new Set(store.get('gearDel',[])||[]);
+DEF.forEach(r=>{ if(!gearDel.has(r[0])&&!gear.some(x=>x.id===r[0])) gear.push(mk(r)); });
 const gl=document.getElementById('gearList');
 const nameOf=k=>k==='A'?(document.getElementById('nA').value||'A'):k==='B'?(document.getElementById('nB').value||'B'):OWN[k];
 let onlyMissing=store.get('onlyMissing',false);
@@ -652,13 +660,14 @@ gl.addEventListener('input',e=>{const t=e.target,row=t.closest('[data-i]');if(!r
   if(f==='ok'||f==='buy'){it[f]=t.checked; if(f==='ok')row.classList.toggle('done',t.checked)}
   else if(f==='g'){it.g=t.value===''?null:+t.value; it.src=t.value===''?'':'user'}
   else it[f]=t.value;
+  Sy.item(it);
   totals();});
 gl.addEventListener('change',e=>{const f=e.target.dataset.f; if(f==='o'||f==='lvl'||f==='g'||f==='ok'||f==='buy') renderGear()});
-gl.addEventListener('click',e=>{const d=e.target.dataset.del;if(d!=null&&confirm('¿Quitar "'+gear[+d].n+'"?')){gear.splice(+d,1);renderGear()}});
+gl.addEventListener('click',e=>{const d=e.target.dataset.del;if(d!=null&&confirm('¿Quitar "'+gear[+d].n+'"?')){Sy.del(gear[+d].id);gearDel.add(gear[+d].id);store.set('gearDel',[...gearDel]);gear.splice(+d,1);renderGear()}});
 [[fLvl,'lvl'],[fCat,'cat'],[fWho,'who'],[fState,'state']].forEach(([el,k])=>el.addEventListener('change',()=>{F[k]=el.value;renderGear()}));
 document.getElementById('onlyMissing').onclick=()=>{onlyMissing=!onlyMissing;store.set('onlyMissing',onlyMissing);renderGear()};
-document.getElementById('addItem').onclick=()=>{gear.push({id:'u'+Date.now(),cat:F.cat||'com',lvl:F.lvl||'mr',n:'Nuevo ítem',o:'each',g:null,src:'',why:'',ok:false,buy:false,note:''});F.state='';fState.value='';onlyMissing=false;renderGear()};
-document.getElementById('resetGear').onclick=()=>{if(confirm('¿Restablecer la lista de material por defecto? Se perderán vuestros cambios.')){gear=DEF.map(mk);renderGear()}};
+document.getElementById('addItem').onclick=()=>{gear.push({id:'u'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),cat:F.cat||'com',lvl:F.lvl||'mr',n:'Nuevo ítem',o:'each',g:null,src:'',why:'',ok:false,buy:false,note:''});F.state='';fState.value='';onlyMissing=false;Sy.item(gear[gear.length-1]);renderGear()};
+document.getElementById('resetGear').onclick=()=>{if(confirm('¿Restablecer la lista de material por defecto? Se perderán vuestros cambios (también en el móvil de tu amigo si la lista es compartida).')){const keep=new Set(DEF.map(r=>r[0]));gear.forEach(it=>{if(!keep.has(it.id))Sy.del(it.id)});gearDel.clear();store.set('gearDel',[]);gear=DEF.map(mk);gear.forEach(it=>Sy.item(it));renderGear()}};
 document.getElementById('exportCsv').onclick=()=>{
   const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
   const rows=[['Categoría','Nivel','Ítem','Quién','Peso (g)','Origen peso','Preparado','Falta comprar','Nota','Motivo']].concat(gear.map(it=>[CAT[it.cat]||it.cat,(LVL[it.lvl]||{}).t,it.n,nameOf(it.o),it.g??'',it.g==null?'pesar':it.src==='ficha'?'ficha':it.src==='est'?'estimado':'usuario',it.ok?'sí':'no',it.buy?'sí':'no',it.note,it.why]));
@@ -668,9 +677,90 @@ document.getElementById('exportCsv').onclick=()=>{
 document.getElementById('printGear').onclick=()=>{document.body.classList.add('print-gear');window.print()};
 window.addEventListener('afterprint',()=>document.body.classList.remove('print-gear'));
 document.getElementById('incOpt').checked=store.get('in:incOpt',false);
-document.getElementById('incOpt').addEventListener('change',e=>{store.set('in:incOpt',e.target.checked);totals()});
-['nA','nB','food','fdays','water'].forEach(id=>{const el=document.getElementById(id);const v=store.get('in:'+id,null);if(v!=null)el.value=v;el.addEventListener('input',()=>{store.set('in:'+id,el.value);id[0]==='n'?renderGear():totals()})});
+document.getElementById('incOpt').addEventListener('change',e=>{store.set('in:incOpt',e.target.checked);totals();Sy.settings()});
+['nA','nB','food','fdays','water'].forEach(id=>{const el=document.getElementById(id);const v=store.get('in:'+id,null);if(v!=null)el.value=v;el.addEventListener('input',()=>{store.set('in:'+id,el.value);id[0]==='n'?renderGear():totals();Sy.settings()})});
 renderGear();
+/* ---------- Sincronización compartida (Supabase, sin dependencias) ---------- */
+const SYNC={url:'',key:''}; // URL del proyecto Supabase y anon key (pública por diseño)
+const Sy=(()=>{
+  const st=document.getElementById('syncState'), box=document.getElementById('syncBox');
+  let trip=null, since='-infinity', timer=null, lastOk=0, failing=false;
+  const dirty=new Map(); let pushT=null;
+  try{ const m=location.hash.match(/^#viaje=([A-Za-z0-9_-]{16,64})$/); if(m){ store.set('trip',m[1]); history.replaceState(null,'',location.pathname+location.search); } }catch(e){}
+  trip=store.get('trip',null);
+  const on=()=>!!(SYNC.url&&SYNC.key&&trip);
+  const rpc=(fn,body)=>fetch(SYNC.url.replace(/\/$/,'')+'/rest/v1/rpc/'+fn,{method:'POST',headers:{'apikey':SYNC.key,'Authorization':'Bearer '+SYNC.key,'Content-Type':'application/json'},body:JSON.stringify(body)}).then(r=>{if(!r.ok) throw new Error(r.status); return r.json()});
+  const pack=it=>{const {ok,buy,note,n,o,g,src,lvl,cat,why}=it; return {ok,buy,note,n,o,g,src,lvl,cat,why}};
+  function status(){
+    if(!SYNC.url||!SYNC.key){ st.innerHTML='<span class="b pend">compartir no configurado</span> <span class="small mut">Los checks se guardan solo en este navegador.</span>'; return; }
+    if(!trip){ st.innerHTML='<span class="b pend">sin viaje compartido</span> <span class="small mut">Crea uno para que los checks se vean en los dos móviles.</span>'; return; }
+    const s=lastOk?Math.round((Date.now()-lastOk)/1000):null;
+    st.innerHTML=failing?'<span class="b bad">sin conexión</span> <span class="small mut">Los cambios se guardan aquí y se enviarán al volver la conexión.</span>'
+      :`<span class="b ok">compartido</span> <span class="small mut">${dirty.size?'enviando…':s==null?'conectando…':'sincronizado hace '+s+' s'}</span>`;
+  }
+  function renderSafe(){ const a=document.activeElement; if(a&&gl.contains(a)&&(a.tagName==='TEXTAREA'||a.type==='text'||a.type==='number')){ pending=true; return; } renderGear(); }
+  let pending=false; gl.addEventListener('focusout',()=>setTimeout(()=>{ if(pending){pending=false; renderSafe();} },50));
+  function apply(rows){
+    let changed=false;
+    rows.forEach(r=>{
+      if(r.updated_at>since) since=r.updated_at;
+      if(dirty.has(r.item_id)) return; // nuestro cambio pendiente gana hasta enviarse
+      if(r.item_id==='_settings'){ const d=r.data||{}; ['nA','nB','food','fdays','water'].forEach(k=>{ if(d[k]!=null){ const el=document.getElementById(k); if(el.value!=d[k]){ el.value=d[k]; store.set('in:'+k,d[k]); changed=true; } } }); if(d.incOpt!=null){ const el=document.getElementById('incOpt'); if(el.checked!==d.incOpt){ el.checked=d.incOpt; store.set('in:incOpt',d.incOpt); changed=true; } } return; }
+      const i=gear.findIndex(x=>x.id===r.item_id);
+      if(r.deleted){ gearDel.add(r.item_id); store.set('gearDel',[...gearDel]); if(i>=0){ gear.splice(i,1); changed=true; } return; }
+      const d=Object.assign({id:r.item_id},r.data);
+      d.g=(d.g==null||d.g==='')?null:(isFinite(+d.g)?+d.g:null); d.ok=!!d.ok; d.buy=!!d.buy; ['n','note','why','o','lvl','cat','src'].forEach(k=>{ if(d[k]!=null) d[k]=String(d[k]).slice(0,300) });
+      if(i>=0){ if(JSON.stringify(pack(gear[i]))!==JSON.stringify(pack(d))){ gear[i]=Object.assign(gear[i],d); changed=true; } }
+      else { gear.push(Object.assign({ok:false,buy:false,note:'',g:null,src:'',why:''},d)); changed=true; }
+    });
+    if(changed){ store.set('gear2',gear); renderSafe(); }
+  }
+  async function pull(){
+    if(!on()) return status();
+    try{ const rows=await rpc('tar_get',{p_trip:trip,p_since:since}); failing=false; lastOk=Date.now(); apply(rows); }
+    catch(e){ failing=true; }
+    status();
+  }
+  async function flush(){
+    pushT=null; if(!on()||!dirty.size) return;
+    const items=[...dirty.entries()];
+    for(const [id,v] of items){
+      try{ const t=await rpc('tar_put',{p_trip:trip,p_item:id,p_data:v.del?{}:v.data,p_deleted:!!v.del}); if(dirty.get(id)===v) dirty.delete(id); failing=false; lastOk=Date.now(); }
+      catch(e){ failing=true; break; }
+    }
+    store.set('syncDirty',[...dirty.entries()]);
+    status(); if(dirty.size&&!pushT) pushT=setTimeout(flush,5000);
+  }
+  const queue=(id,v)=>{ dirty.set(id,v); store.set('syncDirty',[...dirty.entries()]); clearTimeout(pushT); pushT=setTimeout(flush,600); status(); };
+  (store.get('syncDirty',[])||[]).forEach(([k,v])=>dirty.set(k,v));
+  const api={
+    item(it){ if(on()) queue(it.id,{data:pack(it)}); },
+    del(id){ if(on()) queue(id,{del:true}); },
+    settings(){ if(!on()) return; const d={}; ['nA','nB','food','fdays','water'].forEach(k=>d[k]=document.getElementById(k).value); d.incOpt=document.getElementById('incOpt').checked; queue('_settings',{data:d}); },
+    async start(){
+      status(); if(!on()) return;
+      try{ const rows=await rpc('tar_get',{p_trip:trip,p_since:'-infinity'}); failing=false; lastOk=Date.now();
+        if(!rows.length){ gear.forEach(it=>api.item(it)); api.settings(); } else apply(rows);
+      }catch(e){ failing=true; }
+      status(); flush();
+      timer=setInterval(()=>{ if(document.visibilityState==='visible') pull(); else status(); },8000);
+      document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible') pull(); });
+      window.addEventListener('online',()=>{ pull(); flush(); });
+    },
+    link(){ return trip?location.origin+location.pathname+'#viaje='+trip:null; },
+    create(){ const a=new Uint8Array(18); crypto.getRandomValues(a); trip=btoa(String.fromCharCode(...a)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); store.set('trip',trip); since='-infinity'; return api.start(); },
+    leave(){ trip=null; store.set('trip',null); clearInterval(timer); status(); },
+    on, status
+  };
+  // botones
+  document.getElementById('syncCreate').onclick=async()=>{ if(!SYNC.url||!SYNC.key){ alert('Falta configurar Supabase (URL y anon key) en index.html.'); return; } if(trip&&!confirm('Ya hay un viaje compartido en este navegador. ¿Crear otro nuevo?')) return; await api.create(); };
+  document.getElementById('syncCopy').onclick=async()=>{ const l=api.link(); if(!l){ alert('Primero crea el viaje compartido.'); return; } try{ await navigator.clipboard.writeText(l); alert('Enlace copiado. Pásaselo a tu amigo: al abrirlo verá y editará la misma lista.'); }catch(e){ prompt('Copia este enlace y pásaselo a tu amigo:',l); } };
+  document.getElementById('syncLeave').onclick=()=>{ if(confirm('¿Dejar de compartir en este navegador? La lista se queda guardada aquí.')) api.leave(); };
+  setInterval(status,5000);
+  return api;
+})();
+Sy.start();
+
 
 /* ---------- GPX ---------- */
 const gpxName={d1:'TAR1 Bellachat',d2:'TAR2 LacCornu',d3:'TAR3 Cheserys',d3opt:'TAR3 Belvedere',d4:'TAR4 PBerard',d5:'TAR5 Arleve',d6:'TAR6 LacBrevent',d7:'TAR7 Chamonix'};
